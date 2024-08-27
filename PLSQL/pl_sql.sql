@@ -277,8 +277,131 @@ drop procedure fetch_customer_by_city;
    
    CALL fetch_customer_cur();
    
+   /*
+   VIEWS
+   ----
+   Create a view to display following info : 
+   customer_id, customer_name, customer_city 
+   */
+   create view customer_view 
+   AS
+   select c.id as 'customer_id',c.name as 'customer_name', a.city as 'customer_city'
+   from customer c JOIN address a ON c.address_id = a.id; 
    
+   select * from customer_view; 
    
+   /*
+     create a view having following details
+     product_view
+     product_name,product_price,vendor_id,vendor_name,category_name,stock_quantity 
+   */
+   create view productt_view as 
+	select v.id as 'vendor_id',v.name as 'vendor_name',
+	p.title as 'product_name', p.price as 'product_price',c.name as 'category' 
+	from product p join vendor v on p.vendor_id=v.id
+	join category c on p.category_id=c.id;
+   
+   select * from productt_view;
+   
+   /* TRIGGERS */
+   ALTER table customer 
+   ADD update_timestamp  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ;
+ 
+   -- Create a trigger customer_update_trigger to register current timestamp for update operation 
+   DELIMITER $$
+   create trigger customer_update BEFORE UPDATE ON customer 
+   FOR EACH ROW
+   BEGIN
+	-- set the current timestamp value in update_timestamp field 
+    SET NEW.update_timestamp = CURRENT_TIMESTAMP;
+   END 
+   $$
+   -- if it is OLD it will not update 
+   -- If operation fails, Trigger gets rolled back and timestamp won't get updated. 
+   /*
+   create trigger <trigger-name> 
+   AFTER | BEFORE 
+   UPDATE | DELETE | INSERT 
+   ON <table_name>
+   FOR EACH ROW
+   */
+   
+   /* 
+   create a trigger to record price changes in product table into 
+   product_history(id,product_id,old_price,new_price,update_timestamp) table. 
+   */
+   create table product_history(
+   id int primary key auto_increment,product_id int,old_price decimal(10,2),new_price decimal(10,2),update_timestamp timestamp);
+   
+   DELIMITER $$
+   create trigger product_history_log
+    BEFORE 
+   UPDATE 
+   ON product
+   FOR EACH ROW
+   BEGIN
+   if(old.price <> new.price) then
+		insert into product_history(product_id,old_price,new_price,update_timestamp)  
+		values 
+		(old.id,old.price,new.price,current_timestamp);
+	END IF; 
+   END
+   $$
+   
+   /*
+   Query:  insert into customer_product(customer_id,product_id,qty) values ()
+   Write a trigger to compute value of date_of_purchase, time_of_purchase, total_amount=qty*product_price and insert it into 
+   customer_product table 
+   */
+   select CURDATE();
+   select CURTIME();
+      
+   DELIMITER $$
+   create trigger compute_total_amount
+    BEFORE 
+   INSERT 
+   ON customer_product
+   FOR EACH ROW
+   BEGIN
+		declare price_val double default 0; 
+        
+        select price into price_val
+        from product
+        where id= NEW.product_id; 
+         
+        SET NEW.date_of_purchase = CURDATE() ; 
+        SET NEW.time_of_purchase = CURTIME() ;
+        SET NEW.total_amount = (NEW.qty*price_val); 
+        
+	END
+   $$
+   drop trigger compute_total_amount;
+   
+   insert into customer_product
+	(customer_id,product_id,date_of_purchase,time_of_purchase,qty,total_amount) 
+    values 
+(4,3,CURDATE(),CURTIME(),1,0);
+   
+   select LOWER('HARRY');
+   select NOW();
+   
+   -- SCALAR FUNCTIONS 
+   /*
+   CURDATE() 
+   CURTIME()
+   NOW()
+   CONCAT()
+   LOWER()
+   UPPER()
+   ROUND()
+   CEIL()
+   FLOOR()
+   ABS()
+   */
+   
+   -- rank function 
+   select id, title,price ,RANK() OVER (order by price ASC ) AS rank_of_product
+   from product;
    
    
    
