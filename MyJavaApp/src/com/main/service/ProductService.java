@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.main.dto.ProductDto;
- import com.main.repository.DBConnection;
+import com.main.model.Product;
+import com.main.repository.DBConnection;
 import com.main.repository.ProductRepository;
 
 public class ProductService {
@@ -35,6 +36,23 @@ public class ProductService {
 		}
 		
 		dbConnection.dbClose();
+		return list;
+	}
+
+	public List<Product> getAll() throws SQLException {
+		 String sql="select * from product";
+		 Connection con = dbConnection.dbConnect();
+		 ResultSet rst = productRepository.fetchProducts(sql,con);
+		 List<Product> list = new ArrayList<>();
+		 while(rst.next()) {
+			Product product = new Product( rst.getInt("id"), 
+					 rst.getString("title"),
+					 rst.getDouble("price"), 
+					 rst.getDouble("discount"), 
+					 rst.getInt("stock_quantity")  
+					  );
+			list.add(product);
+		 }
 		return list;
 	}
 
