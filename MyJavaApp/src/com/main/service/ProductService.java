@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.main.dto.ProductDto;
+import com.main.exception.InvalidIdException;
 import com.main.model.Product;
 import com.main.repository.DBConnection;
 import com.main.repository.ProductRepository;
@@ -56,4 +58,27 @@ public class ProductService {
 		return list;
 	}
 
+	public boolean validateQty(Map<Integer, Integer> map, List<Product> list) throws InvalidIdException {
+		List<Integer> listIds = list.stream().map(p->p.getId()).toList();
+		boolean isIdPresent = listIds.containsAll(map.keySet()); 
+		if(isIdPresent == false)
+			throw new InvalidIdException("product ID given is Invalid ");
+		
+		//if present check if qty is available 
+		
+		return true;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

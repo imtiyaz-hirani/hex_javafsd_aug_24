@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 import com.main.dto.ProductDto;
+import com.main.exception.InvalidIdException;
 import com.main.model.Customer;
 import com.main.model.Product;
 import com.main.service.CustomerService;
@@ -119,10 +120,12 @@ public class CustomerController {
 					}
 					if(flag != 1) {
 						System.out.println("****CHECK OUT*****");
-						System.out.println(map);
+						productService.validateQty(map,list);
+						//login 
+						
 					}
 					System.out.println("--------------------------------------------------");
-				} catch (SQLException e) {
+				} catch (SQLException | InvalidIdException e) {
 					System.out.println(e.getMessage());
 				}
   					
