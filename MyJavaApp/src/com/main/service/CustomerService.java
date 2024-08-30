@@ -14,11 +14,10 @@ import com.main.repository.DBConnection;
 public class CustomerService {
 
 	private  CustomerRepository customerRepository = new CustomerRepository();
-	private DBConnection dbConnection = new DBConnection();
-	
+	 
 	public List<Customer> fetchCustomerWithAddress() throws SQLException {
 		String sql="select c.id,c.name,a.city,a.street_details  from customer c JOIN address a ON c.address_id = a.id";
-		Connection con = dbConnection.dbConnect();
+		Connection con =DBConnection.getInstance().dbConnect();
 		ResultSet rst = customerRepository.fetchCustomerWithAddress(sql,con);
 		List<Customer> list = new ArrayList<>();
 		while(rst.next()) {
@@ -38,7 +37,7 @@ public class CustomerService {
 			list.add(customer);
 		}
 		
-		dbConnection.dbClose();
+		DBConnection.getInstance().dbClose();
 		return list;
 	}
 

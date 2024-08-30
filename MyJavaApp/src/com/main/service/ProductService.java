@@ -16,7 +16,7 @@ import com.main.repository.ProductRepository;
 
 public class ProductService {
 
-	DBConnection dbConnection = new DBConnection();
+	 
 	ProductRepository productRepository = new ProductRepository();
 	
 	public List<ProductDto> fetchProductsByCustomerId(int cid) throws SQLException {
@@ -25,7 +25,7 @@ public class ProductService {
 				+ " JOIN product p ON cp.product_id = p.id "
 				+ " JOIN vendor v ON p.vendor_id = v.id"
 				+ " where c.id=" + cid;
-		Connection con = dbConnection.dbConnect();
+		Connection con = DBConnection.getInstance().dbConnect();
 		ResultSet rst = productRepository.fetchProductsByCustomerId(sql,con);
 		List<ProductDto> list = new ArrayList<>();
 		while(rst.next()) { 
@@ -37,13 +37,13 @@ public class ProductService {
 			list.add(dto);
 		}
 		
-		dbConnection.dbClose();
+		DBConnection.getInstance().dbClose();
 		return list;
 	}
 
 	public List<Product> getAll() throws SQLException {
 		 String sql="select * from product";
-		 Connection con = dbConnection.dbConnect();
+		 Connection con = DBConnection.getInstance().dbConnect();
 		 ResultSet rst = productRepository.fetchProducts(sql,con);
 		 List<Product> list = new ArrayList<>();
 		 while(rst.next()) {
@@ -55,6 +55,7 @@ public class ProductService {
 					  );
 			list.add(product);
 		 }
+		 DBConnection.getInstance().dbClose();
 		return list;
 	}
 

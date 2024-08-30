@@ -15,6 +15,17 @@ public class DBConnection {
 	private Connection con; 
 	/*Establishing the connection */
 	
+	private static DBConnection dbConnection;
+	private DBConnection() { }
+	
+	static {
+		dbConnection = new  DBConnection();
+	}
+	
+	public static DBConnection getInstance() {
+		return dbConnection;
+	}
+	
 	public Connection dbConnect() {
 		//load the driver
 		try {
@@ -35,6 +46,8 @@ public class DBConnection {
 		 
 	}
 	
+	
+
 	public void dbClose() {
 		try {
 			con.close();
