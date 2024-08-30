@@ -1,6 +1,6 @@
 package com.main.factory;
 
-public abstract class AccountFactory {
+public class AccounttFactoryV1 extends AccountFactory{
  
 	public Account getAccount(AccountType type) {
 		if(type.equals(AccountType.SAVINGS))
@@ -10,4 +10,5 @@ public abstract class AccountFactory {
 		
 		return null;
 	}
+	
 }
