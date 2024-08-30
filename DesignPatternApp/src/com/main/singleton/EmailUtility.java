@@ -23,3 +23,14 @@ public class EmailUtility { //send an Email
 	
 	
 }
+/*
+ * Why: For common classes like DBConnection,EmailUtility we must allow only single 
+ * instance throughout the project
+ * 
+ * How: 
+ * 1. make constructor private 
+   2. create getInstanceMethod()and return static instance of class from here. 
+   
+   Why static: 
+   1. static memory holds only single object of the class as it does not allow duplicates. 
+ */
