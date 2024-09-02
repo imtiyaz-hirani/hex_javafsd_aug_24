@@ -1,0 +1,121 @@
+Dependency Injection 
+====================
+This is framework in spring called as DI, which allows us to inject a class in other class by not creating an object. 
+
+Ex. 
+IN class A , we can Inject class B using Autowired as shown below
+
+Code: 
+@Controller
+class A
+{
+  @Autowired 
+  private B b; //ref of B - Injecting B in A : DI 
+}
+
+@Service / @Component 
+class B{}
+
+
+private MainService mainService = new MainService();   -- POJO(Plain Old Java Obj)
+Problem: Developer has to maintain this object(location in the heap)
+
+Spring Says: AutoWire this and I will manage this 
+
+
+Annotations in Spring
+=====================
+@Configuration
+@Controller
+@Service 
+@Bean
+@Autowired
+
+
+JSP: Java Server Pages 
+----------------------
+Java Code + HTML/CSS 
+
+To send a value from controller to JSP in spring, we can use 3 techniques 
+1. Using Model Interface 
+
+@GetMapping("/hello")
+	public String showHome(Model model) {  //dependency injection
+		model.addAttribute("msg",  mainService.getMessage());
+		return "home";
+	}
+
+In Jsp 
+------
+Use scriptlet tag <% --java code--  %>
+Expression tag: <%=msg  %>
+
+
+
+
+Key points
+==========
+- Using Boot, we setup Spring Framework application 
+	- we create config file 
+	- we create controller and service 
+	- we add dependencies for jsp in pom.xml 
+
+- Using annotations we communicate with Spring 
+	@Configuration 
+
+@Service : registers class as Bean. need not create object of it. use autowire on reference of this class. 
+
+@Autowire: it will automatically create object of class. it is part of DI framework of spring 
+
+@GetMapping: used to create endpoints in controller. defines method paths. 
+
+@Controller: Used to make class as Controller where we define mapping methods. 
+
+@Bean: Used to define method which gives us object and registers it with spring, so that we can autowire it if need. 
+
+@SpringBootApplication : This is the starting point of spring project and it is used for auto configuration 
+
+@EnableMvc: It configures application to act as MVC(Model-View_controller)
+
+Purpose of InternalResourceViewResolver
+----------------------------------------
+Sets the path/location of JSP files. 
+
+what is the use of Model interface
+----------------------------------
+This is used to send the attribute from controller to jsp. 
+
+Second option: HttpServletRequest interface 
+Third Option: ModelAndView class
+
+how can i read the attribute value in JSP
+-----------------------------------------
+using request object. 
+request.getAttribute(<attribute-name>)
+
+
+JSP tags
+--------
+Scriptlet: We can write Java code in jsp inside this tag <% %>
+Expression: <%= %>, it is used to display rthe value of variables in the output. 
+
+JSP to Controller
+-----------------
+-  We can pass the data using URL parameter 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
