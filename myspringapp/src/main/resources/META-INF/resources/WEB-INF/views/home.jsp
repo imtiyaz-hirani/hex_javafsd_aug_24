@@ -17,7 +17,9 @@
 					out.println(i + "   "); 
 				} 
 				  %>
-				
 			</p>
+			
+			<hr>
+			<a href="/all-products"> Show all Products</a>
 		</body>
 	</html>

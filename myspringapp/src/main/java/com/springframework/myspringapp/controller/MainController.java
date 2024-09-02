@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.springframework.myspringapp.model.Product;
 import com.springframework.myspringapp.service.MainService;
 
 @Controller //<-- this tells spring that it is a controller
@@ -23,5 +24,14 @@ public class MainController {
 		model.addAttribute("intList", intList);
 		return "home";
 	}
+	
+	
+	@GetMapping("/all-products")
+	public String allProducts(Model model) {
+		List<Product> list = mainService.getAllProduct();
+		model.addAttribute("pList", list);
+		return "products";
+	}
+	
 	
 }
