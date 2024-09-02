@@ -18,6 +18,7 @@
 					<td>Price</td>
 					<td>Discount</td>
 					<td>Stock Quantity</td>
+					<td> Actions </td>
 				</tr>
 				<%
 					for(Product p :list){
@@ -28,6 +29,7 @@
 						<td><%=p.getPrice()  %></td>
 						<td><%=p.getDiscount()  %></td>
 						<td><%=p.getStockQuantity()  %></td>
+						<td> <a href="/delete-product?id=<%=p.getId()  %>"> delete </a></td>
 					 </tr>	
 				<%	
 					}

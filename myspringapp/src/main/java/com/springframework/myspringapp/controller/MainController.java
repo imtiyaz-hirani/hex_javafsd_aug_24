@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.springframework.myspringapp.model.Product;
 import com.springframework.myspringapp.service.MainService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller //<-- this tells spring that it is a controller
 public class MainController {
 	
@@ -33,5 +35,13 @@ public class MainController {
 		return "products";
 	}
 	
+	@GetMapping("/delete-product")
+	public String deleteProduct(HttpServletRequest request) {
+		int pid = Integer.parseInt(request.getParameter("id"));
+		List<Product> list = mainService.getAllProduct();
+		List<Product> filteredList = mainService.filterProductList(list,pid);
+		request.setAttribute("pList", filteredList);
+		return "products";
+	}
 	
 }

@@ -23,5 +23,10 @@ public class MainService {
 		
 		return list;
 	}
+
+	public List<Product> filterProductList(List<Product> list, int pid) {
+		return list.stream().filter(p->p.getId() != pid).toList(); 
+		
+	}
 	
 }
