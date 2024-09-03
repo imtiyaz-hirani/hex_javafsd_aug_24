@@ -20,10 +20,10 @@ public class ProductRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public List<Product> getAllProducts() {
+	public List<Product> getAllProducts(String status) {
 		String sql="select p.*,c.name as cat_name,v.name as vendor_name,seq from product p "
 				+ " JOIN category c ON p.category_id = c.id "
-				+ " JOIN vendor v ON p.vendor_id = v.id";
+				+ " JOIN vendor v ON p.vendor_id = v.id where status=?";
 		return jdbcTemplate.query(sql, new RowMapper<Product>() {
 
 			@Override
@@ -47,7 +47,7 @@ public class ProductRepository {
 				return product;
 			}
 			
-		});
+		}, status);
 		 
 	}
 	
@@ -67,6 +67,15 @@ public class ProductRepository {
 		else 
 			throw new DBOperationFailedException("Insert Operation failed, Raise Ticket");
 		
+	}
+
+	public boolean updateProduct(int pid,String status) throws DBOperationFailedException {
+		String sql="update product SET status = ? where id=?";
+		int num = jdbcTemplate.update(sql, status,pid);
+		if(num == 1) 
+			return true; 
+		else 
+			throw new DBOperationFailedException("Delete Operation failed, Raise Ticket");
 	}
 }
 

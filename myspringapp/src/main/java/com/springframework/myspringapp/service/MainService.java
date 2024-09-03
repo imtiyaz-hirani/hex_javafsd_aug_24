@@ -1,6 +1,5 @@
 package com.springframework.myspringapp.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +28,9 @@ public class MainService {
 		return "hello user!!!";
 	}
 
-	public List<Product> getAllProduct() {
+	public List<Product> getAllProduct(String status) {
 		
-		return productRepository.getAllProducts();
+		return productRepository.getAllProducts(status);
 	}
 
 	public List<Product> filterProductList(List<Product> list, int pid) {
@@ -51,6 +50,11 @@ public class MainService {
 
 	public void addProduct(String name, double price, double discount, int qty, int catId, int vendorId) throws DBOperationFailedException {
 		productRepository.addProduct(name,price,discount,qty,catId,vendorId);
+		
+	}
+
+	public void updateProduct(int pid,String status) throws DBOperationFailedException {
+		productRepository.updateProduct(pid, status);
 		
 	}
 	

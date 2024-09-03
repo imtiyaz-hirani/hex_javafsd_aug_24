@@ -34,17 +34,33 @@ public class MainController {
 	
 	@GetMapping("/all-products")
 	public String allProducts(Model model) {
-		List<Product> list = mainService.getAllProduct();
+		List<Product> list = mainService.getAllProduct("active");
+		List<Product> archivedList = mainService.getAllProduct("inactive");
+		
+		model.addAttribute("archivedList", archivedList);
 		model.addAttribute("pList", list);
 		return "products";
 	}
 	
 	@GetMapping("/delete-product")
-	public String deleteProduct(HttpServletRequest request) {
+	public String deleteProduct(HttpServletRequest request, Model model) {
 		int pid = Integer.parseInt(request.getParameter("id"));
+		/*
 		List<Product> list = mainService.getAllProduct();
 		List<Product> filteredList = mainService.filterProductList(list,pid);
-		request.setAttribute("pList", filteredList);
+		*/
+		try {
+			mainService.updateProduct(pid,"inactive"); //soft delete 
+			request.setAttribute("msg", "Product deleted from DB"); 
+		} catch (DBOperationFailedException e) {
+			request.setAttribute("msg", e.getMessage()); 
+		}
+		
+		List<Product> list = mainService.getAllProduct("active");
+		List<Product> archivedList = mainService.getAllProduct("inactive");
+		
+		model.addAttribute("archivedList", archivedList);
+		model.addAttribute("pList", list);
 		return "products";
 	}
 	
@@ -81,6 +97,22 @@ public class MainController {
 		model.addAttribute("vendorlist", vendorlist);
 		
 		return "add_product";
+	}
+	@GetMapping("/restore-product")
+	public String restoreProduct(HttpServletRequest request, Model model) {
+		int pid = Integer.parseInt(request.getParameter("id"));
+		try {
+			mainService.updateProduct(pid,"active");
+		
+		} catch (DBOperationFailedException e) {
+			 
+		}
+		List<Product> list = mainService.getAllProduct("active");
+		List<Product> archivedList = mainService.getAllProduct("inactive");
+		
+		model.addAttribute("archivedList", archivedList);
+		model.addAttribute("pList", list);
+		return "products";
 	}
 	
 }
