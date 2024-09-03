@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.springframework.myspringapp.model.Category;
 import com.springframework.myspringapp.model.Product;
 import com.springframework.myspringapp.service.MainService;
 
@@ -42,6 +43,14 @@ public class MainController {
 		List<Product> filteredList = mainService.filterProductList(list,pid);
 		request.setAttribute("pList", filteredList);
 		return "products";
+	}
+	
+	@GetMapping("/show-add-product")
+	public String showAddProduct(Model model) {
+		//take list_category, list_vendor
+		List<Category> catList = mainService.getAllCategory();
+		model.addAttribute("catList", catList);
+		return "add_product";
 	}
 	
 }

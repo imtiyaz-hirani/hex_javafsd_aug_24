@@ -16,7 +16,7 @@
 		</head>
 	 	<body>
 			<h1>All Products</h1>
-			<p><a href="#">  +Add Product </a></p>
+			<p><a href="/show-add-product">  +Add Product </a></p>
 			<%! 
 				int i = 1;
 			%>
