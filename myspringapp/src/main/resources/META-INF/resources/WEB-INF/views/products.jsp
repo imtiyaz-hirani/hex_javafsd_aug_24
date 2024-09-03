@@ -10,6 +10,7 @@
 				.table_style{
 					font-size: 1.5em;
 					font-family: verdana;
+					 
 				}
 			</style>	
 		</head>
@@ -32,6 +33,7 @@
 					<th>Discount</th>
 					<th>Stock Quantity</th>
 					<th>Category Name</th>
+					<th>Vendor Name</th>
 					<th> Actions </th>
 				</tr>
 				<%
@@ -44,6 +46,7 @@
 						<td><%=p.getDiscount()  %></td>
 						<td><%=p.getStockQuantity()  %></td>
 						<td><%=p.getCategory().getName()  %></td>
+						<td><%=p.getVendor().getName()  %></td>
 						<td> <a href="/delete-product?id=<%=p.getId()  %>"> delete </a></td>
 					 </tr>	
 				<%	

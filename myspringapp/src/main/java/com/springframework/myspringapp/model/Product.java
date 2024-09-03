@@ -9,7 +9,10 @@ public class Product {
 
 	private Category category;
 
-	public Product(int id, String title, double price, double discount, int stockQuantity, Category category) {
+	private Vendor vendor; 
+	
+	public Product(int id, String title, double price, double discount, int stockQuantity, 
+			Category category , Vendor vendor) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -17,6 +20,7 @@ public class Product {
 		this.discount = discount;
 		this.stockQuantity = stockQuantity;
 		this.category = category;
+		this.vendor = vendor;
 	}
 
 	public Product() {
@@ -70,6 +74,14 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public Vendor getVendor() {
+		return vendor;
+	}
+
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
 	} 
 	
 	 
