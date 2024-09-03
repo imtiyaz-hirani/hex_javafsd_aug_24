@@ -9,9 +9,11 @@
 			<h1>Add New Product</h1>
 			<%
 				List<Category> catList = (List<Category>)request.getAttribute("catList");
+				List<Vendor> vendorList = (List<Vendor>)request.getAttribute("vendorlist");	
 			%>
 			<div>
-				<form>
+				<span> <%= request.getAttribute("msg")== null?"": request.getAttribute("msg") %> </span>
+				<form method="post" action="/add-product">
 					 <div>
 						<label>Enter Name: </label>
 						<input type="text" name="name" >
@@ -44,15 +46,22 @@
 					 <div>
 					 <label>Select Vendor:  </label>
 					 	<select name="vendorId"> 
-					 	<option> </option>
+							<% 
+							for(Vendor v : vendorList){
+							%>
+							<option value="<%=v.getId()%>"> <%= v.getName()%> </option>
+							<%
+							}
+							%>					 	 
 					 </select>		 	 
 					 </div>	
 					 <div>
 					 	 
 					 	<input type="submit" value="Add Product details" >
 					 </div>	
-
+			
 				</form>
+				<p><a href="/all-products">All Products >> </a> </p>
 			</div>	
 		</body>
 	</html>

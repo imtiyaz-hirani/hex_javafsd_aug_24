@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.springframework.myspringapp.exception.DBOperationFailedException;
 import com.springframework.myspringapp.model.Category;
 import com.springframework.myspringapp.model.Product;
 import com.springframework.myspringapp.model.Vendor;
@@ -55,4 +56,31 @@ public class ProductRepository {
 		return  jdbcTemplate.queryForList(sql, String.class);
 		  
 	}
+
+	public boolean addProduct(String name, double price, double discount, int qty, int catId, int vendorId) throws DBOperationFailedException {
+		String sql="insert into product"
+				+ " (title,price,discount,stock_quantity,vendor_id,category_id) "
+				+ " values (?,?,?,?,?,?)" ; 
+		int num = jdbcTemplate.update(sql, name,price,discount,qty,catId,vendorId); 
+		if(num == 1) 
+			return true; 
+		else 
+			throw new DBOperationFailedException("Insert Operation failed, Raise Ticket");
+		
+	}
 }
+
+/*
+ * insert/update/delete: update method
+ * select : query 
+ * */
+
+
+
+
+
+
+
+
+
+

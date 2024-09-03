@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springframework.myspringapp.exception.DBOperationFailedException;
 import com.springframework.myspringapp.model.Category;
 import com.springframework.myspringapp.model.Product;
+import com.springframework.myspringapp.model.Vendor;
 import com.springframework.myspringapp.repository.CategoryRepository;
 import com.springframework.myspringapp.repository.ProductRepository;
+import com.springframework.myspringapp.repository.VendorRepository;
 
 @Service //this registers the class as a bean in spring
 public class MainService {
@@ -18,6 +21,8 @@ public class MainService {
 	private ProductRepository productRepository;
 	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
+	private VendorRepository vendorRepository;
 	
 	public String getMessage() {
 		System.out.println(productRepository.getAllProductTitle());
@@ -37,6 +42,16 @@ public class MainService {
 	public List<Category> getAllCategory() {
 		 
 		return categoryRepository.getAllCategory();
+	}
+
+	public List<Vendor> getAllVendors() {
+		 
+		return vendorRepository.getAllVendors();
+	}
+
+	public void addProduct(String name, double price, double discount, int qty, int catId, int vendorId) throws DBOperationFailedException {
+		productRepository.addProduct(name,price,discount,qty,catId,vendorId);
+		
 	}
 	
 }
