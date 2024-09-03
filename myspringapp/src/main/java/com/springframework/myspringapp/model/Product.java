@@ -7,13 +7,16 @@ public class Product {
 	private double discount;
 	private int stockQuantity;
 
-	public Product(int id, String title, double price, double discount, int stockQuantity) {
+	private Category category;
+
+	public Product(int id, String title, double price, double discount, int stockQuantity, Category category) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.price = price;
 		this.discount = discount;
 		this.stockQuantity = stockQuantity;
+		this.category = category;
 	}
 
 	public Product() {
@@ -61,10 +64,14 @@ public class Product {
 		this.stockQuantity = stockQuantity;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", title=" + title + ", price=" + price + ", discount=" + discount
-				+ ", stockQuantity=" + stockQuantity + "]";
+	public Category getCategory() {
+		return category;
 	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	} 
+	
+	 
 
 }
