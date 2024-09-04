@@ -3,6 +3,7 @@ package com.springframework.myspringapp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,58 @@ public class MainServiceTest {
 		assertEquals(expectedActive, actualActive);
 		assertEquals(expectedInactive, actualInActive);
 		assertEquals(expectedInvalid, actualInvalid);
+		
+	}
+	
+	public void getAllCategoryTest() {
+		
+	}
+	
+	public void getAllVendorTest() {
+		
+	}
+	
+	@Test
+	public void filterProductListTest() {
+		Product p1 = new Product();
+		p1.setId(1);
+		p1.setTitle("title1");
+		p1.setPrice(100);
+		
+		Product p2 = new Product();
+		p2.setId(4);
+		p2.setTitle("title2");
+		p2.setPrice(120);
+		
+		Product p3 = new Product();
+		p3.setId(2);
+		p3.setTitle("title3");
+		p3.setPrice(200);
+		
+		List<Product> list = Arrays.asList(p1,p2,p3);
+		
+		//Use Case 1: Valid ID 
+		int expectedNum = 2; 
+		List<Product> filteredList = mainService.filterProductList(list, 1); 
+		
+		assertNotNull(filteredList);
+		assertEquals(expectedNum, filteredList.size());
+		
+		//Use Case 2: invalid ID 
+		expectedNum = 3; 
+		filteredList = mainService.filterProductList(list, 6); 
+		assertNotNull(filteredList);
+		assertEquals(expectedNum, filteredList.size());
+		
+		//Use Case 3: Comparing list elements(Object)
+		filteredList = mainService.filterProductList(list, 2); 
+		List<Product> expectedList = Arrays.asList(p1,p2);
+		
+		assertNotNull(filteredList);
+		
+		assertNotNull(expectedList);
+		
+		assertEquals(expectedList, filteredList);
 		
 	}
 }
