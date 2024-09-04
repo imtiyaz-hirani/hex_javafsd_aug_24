@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.springframework.myspringapp.exception.DBOperationFailedException;
 import com.springframework.myspringapp.model.Product;
 import com.springframework.myspringapp.repository.ProductRepository;
 import com.springframework.myspringapp.service.MainService;
@@ -23,6 +24,7 @@ import com.springframework.myspringapp.service.MainService;
 public class MainServiceTest {
 
 	@InjectMocks
+	//@Autowired
 	private MainService mainService;
 	
 	@Mock
@@ -95,7 +97,7 @@ public class MainServiceTest {
 		
 	}
 	
- 
+	@Test
 	public void filterProductListTest() {
 		Product p1 = new Product();
 		p1.setId(1);
@@ -136,6 +138,33 @@ public class MainServiceTest {
 		assertNotNull(expectedList);
 		
 		assertEquals(expectedList, filteredList);
+		
+	}
+	
+	@Test
+	public void addProductTest() {
+		//Use Case : Valid Values 
+		
+		try {
+			when( mainService.addProduct("Dell Logitute 23", 45000, 1200, 5, 2, 2)).thenReturn(true); 
+			
+			boolean status = mainService.addProduct("Dell Logitute 23", 45000, 1200, 5, 2, 2);
+			assertEquals(true, status);
+			
+		} catch (DBOperationFailedException e) { }
+		
+		//Use Case : InValid Values 
+		try {
+			when( mainService.addProduct("Dell Logitute 23", 45000, 1200, 5, 3, 2))
+			.thenThrow(DBOperationFailedException.class) ;
+
+			mainService.addProduct("Dell Logitute 23", 45000, 1200, 5, 3, 2);
+		} catch (DBOperationFailedException e ) { 
+			//assertNotNull(e);
+		}
+		catch(Exception e ) {
+			assertNotNull(e);
+		}
 		
 	}
 }

@@ -52,13 +52,13 @@ public class MainService {
 		return vendorRepository.getAllVendors();
 	}
 
-	public void addProduct(String name, double price, double discount, int qty, int catId, int vendorId) throws DBOperationFailedException {
-		productRepository.addProduct(name,price,discount,qty,catId,vendorId);
+	public boolean addProduct(String name, double price, double discount, int qty, int catId, int vendorId) throws DBOperationFailedException {
+		return productRepository.addProduct(name,price,discount,qty,catId,vendorId);
 		
 	}
 
-	public void updateProduct(int pid,String status) throws DBOperationFailedException {
-		productRepository.updateProduct(pid, status);
+	public boolean  updateProduct(int pid,String status) throws DBOperationFailedException {
+		return productRepository.updateProduct(pid, status);
 		
 	}
 	
