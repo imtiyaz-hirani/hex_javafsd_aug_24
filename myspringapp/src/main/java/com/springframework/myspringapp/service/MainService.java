@@ -28,6 +28,10 @@ public class MainService {
 		return "hello user!!!";
 	}
 
+	public List<String> getProductTitle() {
+		return productRepository.getAllProductTitle(); 
+	}
+	
 	public List<Product> getAllProduct(String status) {
 		
 		return productRepository.getAllProducts(status);
@@ -58,4 +62,18 @@ public class MainService {
 		
 	}
 	
+	/*Testing purpose */
+	public int sum(int num1,int num2) {
+		return num1+num2; 
+	}
 }
+
+
+
+
+
+
+
+
+
+
