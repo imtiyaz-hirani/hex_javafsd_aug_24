@@ -1,5 +1,7 @@
 package com.hibernate.main.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,12 +12,13 @@ import jakarta.persistence.OneToOne;
 public class Customer {
 
 	@Id //this makes id a Primary key 
-	@GeneratedValue(strategy = GenerationType.AUTO)  //this will make id auto_incremental 
 	private int id; 
 	
 	private String name; 
 	
 	private String contact; 
+	
+	private LocalDate dateOfSignUp = LocalDate.now();
 	
 	@OneToOne
 	private User user; //user_id will be created as Foreign Key in customer table

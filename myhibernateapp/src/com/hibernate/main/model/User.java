@@ -1,7 +1,11 @@
 package com.hibernate.main.model;
 
+import com.hibernate.main.enums.RoleType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,7 +14,6 @@ import jakarta.persistence.Id;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@Column(nullable = false)
@@ -19,7 +22,8 @@ public class User {
 	@Column(nullable = false)
 	private String password; 
 	
-	private String role;
+	@Enumerated(EnumType.STRING)
+	private RoleType role;
 
 	public int getId() {
 		return id;
@@ -45,13 +49,15 @@ public class User {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public RoleType getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(RoleType role) {
 		this.role = role;
-	} 
+	}
+
+	 
 	
 	
 }
