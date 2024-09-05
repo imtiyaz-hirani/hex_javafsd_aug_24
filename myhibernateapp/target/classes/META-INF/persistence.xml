@@ -2,13 +2,13 @@
 <persistence version="2.2"
              xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <persistence-unit name="ecomUnit" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="booking_platform" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- Database connection properties -->
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ecom"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/booking_platform"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="techskillsit"/>
 
