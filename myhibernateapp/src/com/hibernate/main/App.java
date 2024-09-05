@@ -41,6 +41,7 @@ public class App {
 		while(true) {
 			System.out.println("--------------Main Menu: ECOM--------------");
 			System.out.println("1. Customer SignUp");
+			System.out.println("2. Customer Login");
 			System.out.println("0. Exit");
 			int input = sc.nextInt();
 			if(input == 0 ) {
@@ -76,6 +77,22 @@ public class App {
 				System.out.println("--------------------------------------------------");
 					
 					break;
+				case 2: 
+					user = new User();
+					System.out.println("-----------CUSTOMER LOGIN-------------");
+					System.out.println("Enter username/email");
+					user.setUsername(sc.next());
+					System.out.println("Enter password");
+					user.setPassword(sc.next());
+					
+					if(userService.login(user) == false) {
+						System.out.println("Invalid Credentials!!! Try again.. ");
+						break; 
+					};
+					System.out.println("Customer Menu");
+			
+					 
+					break; 
 				default: 
 					break; 
 			}

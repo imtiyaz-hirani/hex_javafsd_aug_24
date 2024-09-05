@@ -1,6 +1,7 @@
 package com.hibernate.main.service;
 
 import com.hibernate.main.model.Customer;
+import com.hibernate.main.model.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -34,5 +35,7 @@ public class CustomerService {
 		entityTransaction.commit();
 		 
 	}
+
+	 
 
 }
