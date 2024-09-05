@@ -1,12 +1,15 @@
 package com.hibernate.main;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.hibernate.SessionFactory;
 
+import com.hibernate.main.dto.BusDto;
 import com.hibernate.main.enums.RoleType;
 import com.hibernate.main.model.Customer;
 import com.hibernate.main.model.User;
+import com.hibernate.main.service.BusService;
 import com.hibernate.main.service.CustomerService;
 import com.hibernate.main.service.UserService;
 
@@ -37,11 +40,13 @@ public class App {
 		Scanner sc = new Scanner(System.in);
 		CustomerService customerService = new CustomerService(entityManager,entityTransaction);
 		UserService userService = new UserService(entityManager,entityTransaction);
+		BusService busService = new BusService(entityManager,entityTransaction);
 		
 		while(true) {
 			System.out.println("--------------Main Menu: ECOM--------------");
 			System.out.println("1. Customer SignUp");
 			System.out.println("2. Customer Login");
+			System.out.println("3. Bus Bokking");
 			System.out.println("0. Exit");
 			int input = sc.nextInt();
 			if(input == 0 ) {
@@ -90,8 +95,13 @@ public class App {
 						break; 
 					};
 					System.out.println("Customer Menu");
-					
-					 
+					break; 
+				case 3: 
+					System.out.println("All Bus Info with routes");
+					List<BusDto> listBusDto =  busService.getAllBusesWithRouteInfo();
+					listBusDto.stream().forEach(e-> {
+						System.out.println(e);
+					}); 
 					break; 
 				default: 
 					break; 

@@ -13,8 +13,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="bus_route")
-public class BusRoute {
-
+public class BusRoute { //br  
+	//br.ticket    br.double 
+	//br.bus       br.Bus
 	@Id
 	private int id;
 	
@@ -28,7 +29,9 @@ public class BusRoute {
 	private BusTravelDays travelDays;
 	
 	private String travelTime;
-
+	
+	private double ticket; 
+	
 	public int getId() {
 		return id;
 	}
@@ -54,6 +57,14 @@ public class BusRoute {
 	}
 
 	 
+
+	public double getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(double ticket) {
+		this.ticket = ticket;
+	}
 
 	public BusTravelDays getTravelDays() {
 		return travelDays;
