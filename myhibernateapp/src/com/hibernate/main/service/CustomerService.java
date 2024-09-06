@@ -1,5 +1,6 @@
 package com.hibernate.main.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.hibernate.main.model.BusRoute;
@@ -72,6 +73,7 @@ public class CustomerService {
 		int id = (int)(Math.random()*1000000); 
 		customerBusRoute.setId(id);
 		customerBusRoute.setTotalAmount(totalAmount);
+		customerBusRoute.setDateOfBooking(LocalDate.now());
 		customerBusRoute.setConfirmed(true);
 		customerBusRoute.setCustomer(customer);
 		customerBusRoute.setBusRoute(busRoute);
@@ -80,6 +82,11 @@ public class CustomerService {
 		entityTransaction.commit();
 		return customerBusRoute; 
 		
+	}
+
+	public List<CustomerBusRoute> getPreviousBookings() {
+		 //todo 
+		return null;
 	}
 	
 	//insert/update/delete: persist 
