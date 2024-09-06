@@ -1,8 +1,10 @@
 package com.hibernate.main.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -21,13 +23,15 @@ public class CustomerBusRoute {
 	@ManyToOne
 	private BusRoute busRoute; 
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Passenger> passenger; 
 	
 	private double totalAmount;
 	
 	private boolean isConfirmed;
 
+	private LocalDate dateOfBooking;
+	
 	public int getId() {
 		return id;
 	}
@@ -74,6 +78,14 @@ public class CustomerBusRoute {
 
 	public void setConfirmed(boolean isConfirmed) {
 		this.isConfirmed = isConfirmed;
+	}
+
+	public LocalDate getDateOfBooking() {
+		return dateOfBooking;
+	}
+
+	public void setDateOfBooking(LocalDate dateOfBooking) {
+		this.dateOfBooking = dateOfBooking;
 	}
 	
 	

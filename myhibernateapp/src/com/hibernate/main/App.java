@@ -50,6 +50,7 @@ public class App {
 			System.out.println("1. Customer SignUp");
 			System.out.println("2. Customer Login");
 			System.out.println("3. Bus Bokking");
+			
 			System.out.println("0. Exit");
 			int input = sc.nextInt();
 			if(input == 0 ) {
@@ -97,7 +98,37 @@ public class App {
 						System.out.println("Invalid Credentials!!! Try again.. ");
 						break; 
 					};
-					System.out.println("Customer Menu");
+ 					System.out.println("Press 1. Previous Bookings ");
+ 					System.out.println("Press 2. for enquiry");
+ 					System.out.println("Press 0 to back to main menu");
+ 					int cinput = sc.nextInt();
+ 					if(cinput == 0) {
+ 						break; 
+ 					}
+ 					switch(cinput) {
+ 						case 1: 
+ 							System.out.println("---------Previous Booking---------");
+ 							List<CustomerBusRoute> listBooking = customerService.getPreviousBookings(user.getUsername());
+ 							listBooking.stream().forEach(b->{
+ 								System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+ 								System.out.println("Booking Date: " + b.getDateOfBooking());
+ 								System.out.println("List of Passengers");
+ 								int i=1;
+  								for(Passenger p : b.getPassenger()) {
+ 									System.out.println(i++ + ". " + p.getName() + "    " + p.getAge());
+ 								}
+ 								System.out.println("Bus Details: ");
+ 								System.out.println(b.getBusRoute().getBus());
+ 								System.out.println("Travel Details: ");
+ 								System.out.println(b.getBusRoute().getRoute());
+ 								System.out.println("Total Ticket Amount: " + b.getTotalAmount());
+ 								System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+ 							});
+ 							
+  							break; 
+ 						case 2: 
+ 							break; 
+ 					}
 					break; 
 				case 3: 
 					System.out.println("All Bus Info with routes");

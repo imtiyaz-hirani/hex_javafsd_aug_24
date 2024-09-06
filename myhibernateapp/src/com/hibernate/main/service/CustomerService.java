@@ -78,20 +78,35 @@ public class CustomerService {
 		customerBusRoute.setCustomer(customer);
 		customerBusRoute.setBusRoute(busRoute);
 		
+		customerBusRoute.setPassenger(listPassenger);
+		
 		entityManager.persist(customerBusRoute);
+	
 		entityTransaction.commit();
 		return customerBusRoute; 
-		
 	}
 
-	public List<CustomerBusRoute> getPreviousBookings() {
-		 //todo 
-		return null;
+	public List<CustomerBusRoute> getPreviousBookings(String username) {
+		entityTransaction.begin();
+		//fetch all entries from CustomerBusRoute 
+		String sql="select cbr from CustomerBusRoute cbr";
+		Query query = entityManager.createQuery(sql, CustomerBusRoute.class);
+		@SuppressWarnings("unchecked")
+		List<CustomerBusRoute> list= query.getResultList();
+		
+		//filter the list to keep entries of customers matching given username
+		List<CustomerBusRoute> filteredList = 
+		list.stream()
+		.filter(cbr-> cbr.getCustomer().getUser().getUsername().equals(username)).toList();
+		
+		entityTransaction.commit();
+		return filteredList;
 	}
 	
 	//insert/update/delete: persist 
 	//select : createQuery(sql,Class)
 
+	
 }
 
 
