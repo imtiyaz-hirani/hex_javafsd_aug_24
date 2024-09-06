@@ -1,10 +1,16 @@
 package com.hibernate.main.service;
 
+import java.util.List;
+
+import com.hibernate.main.model.BusRoute;
 import com.hibernate.main.model.Customer;
+import com.hibernate.main.model.CustomerBusRoute;
+import com.hibernate.main.model.Passenger;
 import com.hibernate.main.model.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 
 public class CustomerService {
 
@@ -36,6 +42,56 @@ public class CustomerService {
 		 
 	}
 
-	 
+	public CustomerBusRoute processBooking(User user, int busRouteId, List<Passenger> listPassenger) {
+		entityTransaction.begin();
+		//from user fetch customer 
+		String sql1 ="select c from Customer c JOIN c.user u where u.username=?1";
+		Query query = entityManager.createQuery(sql1, Customer.class);
+		query.setParameter(1, user.getUsername());
+		Customer customer = (Customer) query.getSingleResult();
+		//System.out.println(customer);
+		
+		//fetch BusRoute obj using busRouteId 
+		BusRoute busRoute = entityManager.find(BusRoute.class, busRouteId);
+		//System.out.println(busRoute);
+		
+		
+		//insert passenger details 
+		for(Passenger p : listPassenger) {
+			int id = (int)(Math.random()*1000000); 
+			p.setId(id);
+			p.setCustomer(customer);
+			p.setBusRoute(busRoute);
+			entityManager.persist(p);
+		}
+		
+		//insert booking into customer_busRoute
+		double totalAmount = busRoute.getTicket() * listPassenger.size();
+		CustomerBusRoute customerBusRoute = new CustomerBusRoute();
+		//set id
+		int id = (int)(Math.random()*1000000); 
+		customerBusRoute.setId(id);
+		customerBusRoute.setTotalAmount(totalAmount);
+		customerBusRoute.setConfirmed(true);
+		customerBusRoute.setCustomer(customer);
+		customerBusRoute.setBusRoute(busRoute);
+		
+		entityManager.persist(customerBusRoute);
+		entityTransaction.commit();
+		return customerBusRoute; 
+		
+	}
+	
+	//insert/update/delete: persist 
+	//select : createQuery(sql,Class)
 
 }
+
+
+
+
+
+
+
+
+

@@ -38,4 +38,10 @@ public class Bus {
 		this.details = details;
 	}
 
+	@Override
+	public String toString() {
+		return "Bus [id=" + id + ", busNumber=" + busNumber + ", details=" + details + "]";
+	}
+
+	
 }

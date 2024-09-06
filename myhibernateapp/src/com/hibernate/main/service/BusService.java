@@ -24,7 +24,7 @@ public class BusService {
 
 	public List<BusDto> getAllBusesWithRouteInfo() {
 		entityTransaction.begin();
-		String sql="select b.id,b.busNumber, "
+		String sql="select br.id,b.busNumber, "
 				+ " r.sourceStation,r.destinationStation,r.distance, "
 				+ " br.travelDays,br.travelTime,br.ticket "
 				+ " from BusRoute br "

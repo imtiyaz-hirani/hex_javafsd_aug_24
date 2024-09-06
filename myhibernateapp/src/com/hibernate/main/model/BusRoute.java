@@ -81,6 +81,12 @@ public class BusRoute { //br
 	public void setTravelTime(String travelTime) {
 		this.travelTime = travelTime;
 	}
+
+	@Override
+	public String toString() {
+		return "BusRoute [id=" + id + ", bus=" + bus + ", route=" + route + ", travelDays=" + travelDays
+				+ ", travelTime=" + travelTime + ", ticket=" + ticket + "]";
+	}
 	
 	
 }

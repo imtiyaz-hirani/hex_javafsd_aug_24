@@ -1,5 +1,6 @@
 package com.hibernate.main;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,6 +9,8 @@ import org.hibernate.SessionFactory;
 import com.hibernate.main.dto.BusDto;
 import com.hibernate.main.enums.RoleType;
 import com.hibernate.main.model.Customer;
+import com.hibernate.main.model.CustomerBusRoute;
+import com.hibernate.main.model.Passenger;
 import com.hibernate.main.model.User;
 import com.hibernate.main.service.BusService;
 import com.hibernate.main.service.CustomerService;
@@ -102,6 +105,63 @@ public class App {
 					listBusDto.stream().forEach(e-> {
 						System.out.println(e);
 					}); 
+					
+					System.out.println("Enter the ID for Booking, Press 0 to go to main menu");
+					int option = sc.nextInt();
+					if(option == 0) {
+						break; 
+					}
+					/* Login to Proceed with booking */
+					user = new User();
+					System.out.println("-----------CUSTOMER LOGIN-------------");
+					System.out.println("Enter username/email");
+					user.setUsername(sc.next());
+					System.out.println("Enter password");
+					user.setPassword(sc.next());
+					
+					if(userService.login(user) == false) {
+						System.out.println("Invalid Credentials!!! Try again.. ");
+						break; 
+					};
+					
+					System.out.println("---------Enter Passenger Details-----------");
+					System.out.println("How many passengers will be travelling?");
+					int numPassenger = sc.nextInt();
+					if(numPassenger < 1)
+						break; 
+					int i=1;
+					List<Passenger> listPassenger = new ArrayList<>();
+					while(i<=numPassenger) {
+						Passenger passenger = new Passenger();
+						//generate ID 
+					
+						System.out.println("Enter passenger name: ");
+						passenger.setName(sc.next()); 
+						System.out.println("Enter passenger age: ");
+						passenger.setAge(sc.nextInt());
+						listPassenger.add(passenger);
+						i++;
+					}
+					CustomerBusRoute cbr =  customerService.processBooking(user,option,listPassenger); 
+					System.out.println("*************Booking Details**************");
+					System.out.println("Customer Name: " + cbr.getCustomer().getName());
+					System.out.println("Number of Passengers: " + listPassenger.size());
+					 
+					System.out.println("--------Passenger Details-------");
+					int x=1;
+					for(Passenger p  : listPassenger) {
+						System.out.println(x++ + ". " + p.getName() + "    " + p.getAge());
+					}
+					System.out.println("-------------------------------");
+					 
+					System.out.println("----------Booking Info---------");
+					System.out.println("Bus Details: ");
+					System.out.println(cbr.getBusRoute().getBus());
+					System.out.println("Travel Details");
+					System.out.println(cbr.getBusRoute().getRoute());
+					System.out.println("--------------------------------");
+					System.out.println("Booking Status: " + cbr.isConfirmed());
+					System.out.println("*******************************************");
 					break; 
 				default: 
 					break; 

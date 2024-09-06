@@ -59,6 +59,12 @@ public class Route {
 	public void setDetails(String details) {
 		this.details = details;
 	}
+
+	@Override
+	public String toString() {
+		return "Route [id=" + id + ", sourceStation=" + sourceStation + ", destinationStation=" + destinationStation
+				+ ", distance=" + distance + ", details=" + details + "]";
+	}
 	
 	
 	

@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 @Entity //<-- create the table in DB 
-public class Customer {
+public class Customer {  //c
 
 	@Id //this makes id a Primary key 
 	private int id; 
@@ -53,6 +53,12 @@ public class Customer {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", contact=" + contact + ", dateOfSignUp=" + dateOfSignUp
+				+ ", user=" + user + "]";
 	} 
 	
 	
