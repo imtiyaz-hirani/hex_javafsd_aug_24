@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -88,6 +89,26 @@ public class EmployeeController {
 			dto.setMsg(e.getMessage());
 			 return ResponseEntity.badRequest().body(dto);
 		} 
+	}
+	
+	/*
+	 * PATH: http://localhost:port/employee/update
+	 * method: PUT/POST 
+	 * Description: update single employee on the basis of given ID and new employee data 
+	 * @Param: eid , new Employee obj 
+	 * @return: Employee 
+	 * @throws: InvalidIdException 
+	 * */
+	
+	@PutMapping("/update/{eid}")
+	public ResponseEntity<?> updateEmployee(@PathVariable int eid,@RequestBody Employee newEmployee, MessageDto dto) {
+		try {
+			Employee emp = employeeService.updateEmployee(eid,newEmployee);
+			return ResponseEntity.ok(emp); 
+		} catch (InvalidIdException e) {
+			 dto.setMsg(e.getMessage());
+			 return ResponseEntity.badRequest().body(dto);
+		}
 	}
 }
 

@@ -40,4 +40,19 @@ public class EmployeeService {
 		
 	}
 
+	public Employee updateEmployee(int eid, Employee newEmployee) throws InvalidIdException {
+		Optional<Employee> optional =  employeeRepository.findById(eid);
+		if(optional.isEmpty())
+			throw new InvalidIdException("Invalid ID Given"); 
+		
+		Employee employeeDB = optional.get(); //this has old values of name and contact 
+		//transfer newEmployee records to employeeDB 
+		employeeDB.setName(newEmployee.getName());
+		employeeDB.setContact(newEmployee.getContact());
+		
+		//save this employeeDb again with updated value 
+		return employeeRepository.save(employeeDB);
+		
+	}
+
 }
