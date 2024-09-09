@@ -38,6 +38,11 @@ public class Employee {
 
 	public void setContact(String contact) {
 		this.contact = contact;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", contact=" + contact + "]";
 	} 
 	
 	
