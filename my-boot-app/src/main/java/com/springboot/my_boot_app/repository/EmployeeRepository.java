@@ -12,5 +12,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 }
 //save(employeeObj): Employee 
 //findAll(): List<Employee>
-//findById(id): Employee
+//findById(id): Optional<Employee>
 //deleteById(id): void
