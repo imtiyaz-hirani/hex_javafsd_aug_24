@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,6 +69,26 @@ public class EmployeeController {
 		}
 	}
 	
+	/*
+	 * PATH: http://localhost:port/employee/one
+	 * method: DELETE 
+	 * Description: delete single employee on the basis of given ID 
+	 * @Param: eid
+	 * @return: String 
+	 * @throws: InvalidIdException 
+	 * */
+	
+	@DeleteMapping("/one/{eid}")
+	public ResponseEntity<?> deleteEmployee(@PathVariable int eid,MessageDto dto) {
+		try {
+			employeeService.deleteEmployee(eid);
+			dto.setMsg("Employee Deleted..");
+			return ResponseEntity.ok(dto);
+		} catch (InvalidIdException e) {
+			dto.setMsg(e.getMessage());
+			 return ResponseEntity.badRequest().body(dto);
+		} 
+	}
 }
 
 /*  	  Object 
