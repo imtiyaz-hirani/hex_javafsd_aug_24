@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.my_boot_app.EmployeeService;
 import com.springboot.my_boot_app.dto.MessageDto;
+import com.springboot.my_boot_app.exception.InputValidationException;
 import com.springboot.my_boot_app.exception.InvalidIdException;
 import com.springboot.my_boot_app.model.Employee;
 
@@ -32,8 +33,16 @@ public class EmployeeController {
 	 * @return: Employee 
 	 * */
 	@PostMapping("/add")
-	public Employee addEmployee(@RequestBody Employee employee) { //reading the i/p
-		return employeeService.addEmployee(employee);
+	public ResponseEntity<?> addEmployee(@RequestBody Employee employee, MessageDto dto) { //reading the i/p
+		
+		try {
+			employeeService.validate(employee);
+		} catch (InputValidationException e) {
+			dto.setMsg(e.getMessage());
+			 return ResponseEntity.badRequest().body(dto); 
+		} 
+		return ResponseEntity.ok(employeeService.addEmployee(employee)); 
+		 
 	}
 	
 	/*

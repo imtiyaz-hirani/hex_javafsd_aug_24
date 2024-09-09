@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.my_boot_app.exception.InputValidationException;
 import com.springboot.my_boot_app.exception.InvalidIdException;
 import com.springboot.my_boot_app.model.Employee;
 import com.springboot.my_boot_app.repository.EmployeeRepository;
@@ -52,7 +53,20 @@ public class EmployeeService {
 		
 		//save this employeeDb again with updated value 
 		return employeeRepository.save(employeeDB);
-		
+	}
+
+	public void validate(Employee employee) throws InputValidationException {
+		if(employee == null)  
+			throw new InputValidationException("Object cannot be null ");
+		 
+		 
+		if(employee.getName() == null || employee.getName().equals(""))  
+			throw new InputValidationException("Field employee.name cannot be blank ");
+	 
+		 
+		if(employee.getContact() == null || employee.getContact().equals(""))  
+			throw new InputValidationException("Field employee.contact cannot be blank ");
+		 
 	}
 
 }
