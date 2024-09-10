@@ -1,11 +1,14 @@
 package com.springboot.my_boot_app.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.my_boot_app.dto.ProjectEmployeeStatDto;
+import com.springboot.my_boot_app.enums.ProjectType;
 import com.springboot.my_boot_app.exception.InputValidationException;
 import com.springboot.my_boot_app.exception.InvalidIdException;
 import com.springboot.my_boot_app.model.Manager;
@@ -43,5 +46,18 @@ public class ProjectService {
 	public List<Project> getProjectByEmployeeId(int eid) {
 		 
 		return projectRepository.getProjectByEmployeeId(eid);
+	}
+
+	public List<ProjectEmployeeStatDto> getEmployeeCountByProjectType() {
+		List<Object[]> list =  projectRepository.getEmployeeCountByProjectTypeJPQL();
+ 		List<ProjectEmployeeStatDto> listDto = new ArrayList<>();
+		for(Object[] obj : list) {
+			String str = obj[0].toString();
+			long numberOfEmployee = (Long)obj[1];
+			ProjectEmployeeStatDto dto = new ProjectEmployeeStatDto(str, numberOfEmployee);
+			listDto.add(dto);
+		}
+		
+		return listDto;
 	}
 }

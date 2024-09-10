@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.my_boot_app.dto.MessageDto;
+import com.springboot.my_boot_app.dto.ProjectEmployeeStatDto;
 import com.springboot.my_boot_app.exception.InputValidationException;
 import com.springboot.my_boot_app.model.Project;
 import com.springboot.my_boot_app.service.ProjectService;
@@ -37,5 +38,10 @@ public class ProjectController {
 	@GetMapping("/employee/{eid}")
 	public List<Project> getProjectByEmployeeId(@PathVariable int eid) {
 		return projectService.getProjectByEmployeeId(eid);
+	}
+	
+	@GetMapping("/employee/stat")
+	public List<ProjectEmployeeStatDto> getEmployeeCountByProjectType() {
+		return projectService.getEmployeeCountByProjectType();
 	}
 }
