@@ -8,6 +8,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Manager {
@@ -22,6 +23,9 @@ public class Manager {
 
 	@Enumerated(EnumType.STRING)
 	private JobTitle jobTitle; 
+	
+	@OneToOne
+	private User user;
 	
 	public int getId() {
 		return id;
@@ -53,6 +57,14 @@ public class Manager {
 
 	public void setJobTitle(JobTitle jobTitle) {
 		this.jobTitle = jobTitle;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	} 
 	
 	

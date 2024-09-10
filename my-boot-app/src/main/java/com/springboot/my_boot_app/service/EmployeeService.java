@@ -8,9 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.my_boot_app.enums.RoleType;
 import com.springboot.my_boot_app.exception.InputValidationException;
 import com.springboot.my_boot_app.exception.InvalidIdException;
 import com.springboot.my_boot_app.model.Employee;
+import com.springboot.my_boot_app.model.User;
 import com.springboot.my_boot_app.repository.EmployeeRepository;
 
 @Service
@@ -21,7 +23,18 @@ public class EmployeeService {
 
 	private Logger logger = LoggerFactory.getLogger(EmployeeService.class);
 	
+	@Autowired
+	private UserService userService; 
+	
 	public Employee addEmployee(Employee employee) {
+		//extract user details from employee and save it in DB so that hibernate can add id to this 
+		User user = employee.getUser();
+		user.setRole(RoleType.EMPLOYEE);
+		user = userService.adduser(user);
+		 
+		//attach this user , fully formed object to employee
+		employee.setUser(user);
+		
 		logger.info("adding employee to DB " + employee);
 		return employeeRepository.save(employee);
 	}
