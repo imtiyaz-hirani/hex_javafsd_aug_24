@@ -10,11 +10,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Employee {
+public class Manager {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id; 
+	private int id;
 	
 	private String name; 
 	
@@ -47,18 +47,12 @@ public class Employee {
 		this.contact = contact;
 	}
 
-	
 	public JobTitle getJobTitle() {
 		return jobTitle;
 	}
 
 	public void setJobTitle(JobTitle jobTitle) {
 		this.jobTitle = jobTitle;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", contact=" + contact + "]";
 	} 
 	
 	
