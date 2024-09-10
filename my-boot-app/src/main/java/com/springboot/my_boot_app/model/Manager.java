@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Manager {
+public class Manager { //m
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

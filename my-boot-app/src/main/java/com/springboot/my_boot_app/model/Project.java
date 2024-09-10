@@ -14,7 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Project {
+public class Project { //p
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

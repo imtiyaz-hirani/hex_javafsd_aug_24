@@ -1,5 +1,6 @@
 package com.springboot.my_boot_app.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,10 @@ public class ProjectService {
 			throw new InvalidIdException("project ID Invalid..");
 		
 		return optional.get();
+	}
+
+	public List<Project> getProjectByEmployeeId(int eid) {
+		 
+		return projectRepository.getProjectByEmployeeId(eid);
 	}
 }
