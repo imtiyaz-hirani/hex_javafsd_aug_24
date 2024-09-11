@@ -9,6 +9,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -16,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.springboot.my_boot_app.service.SecurityUserService;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
 	@Autowired
@@ -23,9 +25,10 @@ public class SecurityConfig {
 	
 	@Bean
 	 SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
+        http               
                 .authorizeHttpRequests(authorize -> authorize
+                				.requestMatchers(HttpMethod.GET, "/auth/login").authenticated()
+                				.requestMatchers(HttpMethod.GET, "/project/employee/stat").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/employee/add").hasAuthority("MANAGER")
                                 .requestMatchers(HttpMethod.GET, "/employee/one/{eid}").hasAuthority("EMPLOYEE")
                                 .requestMatchers(HttpMethod.GET, "/employee/all").authenticated()

@@ -21,6 +21,8 @@ import jakarta.persistence.Id;
 @Entity
 public class User implements UserDetails{ //u
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id; 
@@ -33,7 +35,7 @@ public class User implements UserDetails{ //u
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
 	
-	private boolean isEnabled = false; 
+	private boolean isEnabled = true; 
 
 	public int getId() {
 		return id;
@@ -102,6 +104,12 @@ public class User implements UserDetails{ //u
 	public boolean isCredentialsNonExpired() {
 		
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role
+				+ ", isEnabled=" + isEnabled + "]";
 	} 
 	
 	
