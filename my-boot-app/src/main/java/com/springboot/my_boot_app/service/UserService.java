@@ -8,7 +8,7 @@ import com.springboot.my_boot_app.model.User;
 import com.springboot.my_boot_app.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService{
 
 	@Autowired
 	private UserRepository userRepository;
@@ -26,5 +26,7 @@ public class UserService {
 		
 		return userRepository.save(user);
 	}
+
+	
 
 }
