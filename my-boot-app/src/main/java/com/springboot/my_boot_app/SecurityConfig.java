@@ -33,6 +33,8 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/employee/one/{eid}").hasAuthority("EMPLOYEE")
                                 .requestMatchers(HttpMethod.GET, "/employee/all").authenticated()
                                 .requestMatchers(HttpMethod.GET, "/project/employee/{eid}").hasAnyAuthority("EMPLOYEE", "MANAGER")
+                                .requestMatchers(HttpMethod.GET, "/manager/employee").hasAuthority("MANAGER")
+
                                 .anyRequest().permitAll()
                 )
                 .httpBasic(Customizer.withDefaults());

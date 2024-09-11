@@ -1,5 +1,6 @@
 package com.springboot.my_boot_app.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,10 @@ public class ManagerController {
 	 * @Param: String  
 	 * @return: List<Employee> 
 	 * */
-	@GetMapping("/employee/{username}")
-	public List<Employee> getEmployeeByManagerUsername(@PathVariable String username) {
-		return managerService.getEmployeeByManagerUsername(username);
+	@GetMapping("/employee")
+	public List<Employee> getEmployeeByManagerUsername(Principal principal) {
+		
+		return managerService.getEmployeeByManagerUsername(principal.getName());
 	}
 	
 }
