@@ -31,6 +31,9 @@ public class SecurityConfig {
                         .requestMatchers("/auth/signup").permitAll()
                         .requestMatchers("/admin/hello").hasRole("ADMIN")
                         .requestMatchers("/user/hello").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/employee/add").hasRole("ADMIN")
+                        .requestMatchers("/asset/add").hasRole("ADMIN")
+                        .requestMatchers("/employee/asset/request/{assetId}").hasRole("EMPLOYEE")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
