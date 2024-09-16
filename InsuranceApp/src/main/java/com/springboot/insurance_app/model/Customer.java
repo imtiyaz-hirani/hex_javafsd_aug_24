@@ -1,20 +1,20 @@
 package com.springboot.insurance_app.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Manufacturer { //Brand
+public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id; 
 	
-	@Column(unique = true)
-	private String name;
+	private String name; 
+	
+	private String email;
 
 	public int getId() {
 		return id;
@@ -22,7 +22,7 @@ public class Manufacturer { //Brand
 
 	public void setId(int id) {
 		this.id = id;
-	} 
+	}
 
 	public String getName() {
 		return name;
@@ -30,6 +30,14 @@ public class Manufacturer { //Brand
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	} 
 	
 	

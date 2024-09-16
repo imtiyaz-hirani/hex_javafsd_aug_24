@@ -1,6 +1,5 @@
 package com.springboot.insurance_app.model;
 
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Vehicle {
+public class Vehicle { //Model
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -46,5 +46,9 @@ public class VehicleController {
 		}
 	}
 	
+	@PostMapping
+	public void addVariant() {
+		
+	}
 	
 }

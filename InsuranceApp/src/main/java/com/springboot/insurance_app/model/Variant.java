@@ -15,7 +15,7 @@ public class Variant {
 	
 	private String variantType; 
 	
-	@ManyToOne
+	@ManyToOne 
 	private Vehicle vehicle;
 
 	public int getId() {
