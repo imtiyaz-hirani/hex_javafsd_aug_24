@@ -47,4 +47,14 @@ public class EmployeeService {
 		return employeeRepo.findAll(pageable).getContent();
 	}
 
+	public void deleteEmployeeBatchByDepartment(String department) {
+		List<Employee> list =  employeeRepo.findAll();
+		list = list.parallelStream()
+				.filter(e->e.getDepartment().equalsIgnoreCase(department))
+				.toList();
+	
+		//spring batch 
+		employeeRepo.deleteAll(list);
+	}
+
 }
