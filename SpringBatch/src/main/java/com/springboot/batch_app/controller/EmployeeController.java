@@ -33,8 +33,7 @@ public class EmployeeController {
 			return ResponseEntity.ok("Employee data uploaded and added to DB");
 		} catch (IOException e) {
 			 return ResponseEntity.badRequest().body(e.getMessage());
-		}
-		
+		}	
 	}
 	//pagination 
 	@GetMapping("/employee/all")
