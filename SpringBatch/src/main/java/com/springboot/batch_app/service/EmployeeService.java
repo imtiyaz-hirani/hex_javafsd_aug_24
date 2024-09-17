@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -41,9 +42,9 @@ public class EmployeeService {
 			employeeRepo.saveAll(list);
 		}
 
-	public List<Employee> getAll() {
+	public List<Employee> getAll(Pageable pageable) {
 		 
-		return employeeRepo.findAll();
+		return employeeRepo.findAll(pageable).getContent();
 	}
 
 }

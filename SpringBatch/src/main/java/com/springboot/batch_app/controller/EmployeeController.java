@@ -5,10 +5,13 @@ package com.springboot.batch_app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,9 +34,20 @@ public class EmployeeController {
 		}
 		
 	}
-	
+	//pagination 
 	@GetMapping("/employee/all")
-	public List<Employee> getAllEmployee(){
-		return employeeService.getAll();
+	public List<Employee> getAllEmployee(
+			@RequestParam(defaultValue = "0", required = false) Integer page, 
+			@RequestParam(defaultValue = "100000", required = false) Integer size){
+		
+		Pageable pageable =  PageRequest.of(page, size); 
+		
+		return employeeService.getAll(pageable);
 	}
 }
+/**/
+
+
+
+
+
