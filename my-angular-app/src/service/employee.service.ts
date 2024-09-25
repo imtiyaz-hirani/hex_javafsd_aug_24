@@ -14,15 +14,18 @@ export class EmployeeService{
     getAllEmployee() : Employee[]{
         this.employee1={
             name:"harry potter",
-            email:"harry@gmail.com"
+            email:"harry@gmail.com",
+            salary: 3800000
           };
           this.employee2={
             name:"ronald weasley",
-            email:"ronald@gmail.com"
+            email:"ronald@gmail.com",
+            salary: 2500000
           };
           this.employee3={
             name:"hermione granger",
-            email:"hermione@gmail.com"
+            email:"hermione@gmail.com",
+            salary: 1800000
           }
 
           this.employee.push(this.employee1);

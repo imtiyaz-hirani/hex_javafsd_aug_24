@@ -1,11 +1,7 @@
 export class Employee{
-    id?: Number; 
+    id?: number; 
     name: string; 
     email: string; 
-
-    constructor(){
-        this.id=0;
-        this.name="";
-        this.email="";
-    }
+    salary: number;
+     
 }
