@@ -1,0 +1,12 @@
+.container{
+    margin: 0px;
+}
+.info{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.5em;
+    width: 30%;
+}
+
+.emp_info{
+    background-color: bisque;
+}
