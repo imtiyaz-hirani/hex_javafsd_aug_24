@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
  import { NgFor } from '@angular/common';
 import { Employee } from '../model/Employee';
+import { EmployeeService } from '../service/employee.service';
  
 @Component({
   selector: 'app-root',
@@ -11,24 +12,10 @@ import { Employee } from '../model/Employee';
   styleUrl: './app.component.css'
 }) 
 export class AppComponent {
-  employee:Employee[]=[];
 
-  employee1:Employee={
-    name:"harry potter",
-    email:"harry@gmail.com"
-  };
-  employee2:Employee={
-    name:"ronald weasley",
-    email:"ronald@gmail.com"
-  };
-  employee3:Employee={
-    name:"hermione granger",
-    email:"hermione@gmail.com"
-  }
+  employee:Employee[];
 
-  constructor(){
-    this.employee.push(this.employee1);
-    this.employee.push(this.employee2);
-    this.employee.push(this.employee3);
+  constructor(private employeeService: EmployeeService){
+    this.employee = this.employeeService.getAllEmployee();
   }
 }
