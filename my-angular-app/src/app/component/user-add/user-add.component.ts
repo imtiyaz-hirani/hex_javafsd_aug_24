@@ -18,7 +18,7 @@ export class UserAddComponent {
       email : new FormControl('', Validators.email),
       city : new FormControl('',Validators.required),
       company : new FormControl('', Validators.required),
-      website : new FormControl('',Validators.pattern("^[w]{3}.[a-zA-Z0-9].[a-z]{2-4}$")),
+      website : new FormControl('',/* Validators.pattern("^[w]{3}.[a-zA-Z0-9]+.[a-z]{2-4}$")*/),
     })
   }
 
