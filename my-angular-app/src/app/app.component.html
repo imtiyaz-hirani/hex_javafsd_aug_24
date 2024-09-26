@@ -1,12 +1,3 @@
-<div class="container">
-  <div class="info" *ngFor="let emp of employee" >
-    <div class="emp_info">
-      <p *ngIf="emp.salary>3000000">*** </p>
-      <p *ngIf="emp.salary>=2000000 && emp.salary<3000000">** </p>
-      <p *ngIf="emp.salary>=1000000 && emp.salary <2000000">* </p>
-      <p>Name: {{emp.name}} </p>
-      <p>Salary: {{emp.salary}}</p>
-      <p>Email: {{emp.email}} </p> 
-    </div> 
-  </div>
-</div>
+<app-navbar></app-navbar>
+<app-user-list></app-user-list>
+<app-user-add></app-user-add>
