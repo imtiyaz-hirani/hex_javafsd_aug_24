@@ -10,7 +10,6 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './user-list.component.css'
 })
 export class UserListComponent {
-
   users:any[] =[];
   isDelete: boolean = false;
   deleteMsg: string=''
