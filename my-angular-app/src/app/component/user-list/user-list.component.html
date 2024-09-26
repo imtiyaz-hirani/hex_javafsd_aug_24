@@ -4,6 +4,9 @@
         <div class="alert alert-primary">
             <span class="custom-user-heading"> All Users</span>
           </div>
+          <div class="alert alert-info" role="alert" *ngIf="isDelete">
+              {{deleteMsg}}
+          </div>
        </div>
     </div>
     <div class="row" > 
@@ -16,8 +19,8 @@
                     Email: {{user.email}} <br />
                     City: {{user.address.city}} <br />
                     Web: {{user.website}}
-                  </p>
-                  <a href="#" class="card-link">Delete User</a>
+                  </p>  
+                  <button class="bt btn-danger btn-sm" (click)="onDelete(user.id,user.name)">Delete User</button>
                   <a href="#" class="card-link">Edit User Info</a>
                 </div>
               </div>
