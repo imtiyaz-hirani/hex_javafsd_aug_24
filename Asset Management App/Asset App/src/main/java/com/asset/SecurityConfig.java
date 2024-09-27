@@ -31,6 +31,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/signup").permitAll()
                         .requestMatchers("/doctor/add").hasRole("ADMIN")
+                        .requestMatchers("/doctor/all").hasAnyRole("ADMIN")
                         .requestMatchers("/doctor/schedule/add/{doctorId}").hasAnyRole("DOCTOR","ADMIN")
                         .requestMatchers("/book-appointment/{patientId}/{doctorId}").permitAll()
                         .requestMatchers("/patient-opd/add").permitAll()
@@ -42,6 +43,7 @@ public class SecurityConfig {
                         .requestMatchers("/employee/add").hasRole("ADMIN")
                         .requestMatchers("/asset/add").hasRole("ADMIN")
                         .requestMatchers("/employee/asset/request/{assetId}").hasRole("EMPLOYEE")
+                        
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

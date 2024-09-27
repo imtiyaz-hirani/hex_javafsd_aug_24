@@ -1,5 +1,6 @@
 package com.asset.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,10 @@ public class DoctorService {
 		
 		/* save doctorSchedule */
 		return doctorScheduleRepo.save(doctorSchedule);
+	}
+
+	public List<Doctor> getAll() {
+		 
+		return doctorRepo.findAll();
 	}
 }
