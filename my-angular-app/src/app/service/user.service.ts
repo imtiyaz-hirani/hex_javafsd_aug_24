@@ -29,5 +29,5 @@ export class UserService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
     })
   }
- 
+
 }

@@ -4,6 +4,7 @@ import { AdminDashboardComponent } from './component/admin/dashboard/dashboard.c
 import { DoctorDashboardComponent } from './component/doctor/dashboard/dashboard.component';
 import { PatientDashboardComponent } from './component/patient/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+import { LogoutComponent } from './auth/logout/logout.component';
  
 export const routes: Routes = [
     {
@@ -17,6 +18,9 @@ export const routes: Routes = [
     },
     {
         "path": "patient/dashboard" , component: PatientDashboardComponent
+    },
+    {
+        "path": "logout" , component: LogoutComponent
     },
     {
         "path": "**" , component: PageNotFoundComponent
