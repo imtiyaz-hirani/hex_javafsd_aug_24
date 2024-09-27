@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+ 
 
   getuserApi='https://jsonplaceholder.typicode.com/users';
 
@@ -13,5 +14,12 @@ export class UserService {
 
   getUsers() : Observable<any>{
     return this.http.get(this.getuserApi);
+  }
+
+  getToken(username: any, password: any) : Observable<any> {
+      return this.http.post<any>('http://localhost:8082/auth/token', {
+            "username": username,
+            "password": password
+        }) 
   }
 }
