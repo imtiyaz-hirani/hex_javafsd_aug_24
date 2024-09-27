@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
- 
+  
 
   getuserApi='https://jsonplaceholder.typicode.com/users';
 
@@ -22,4 +23,11 @@ export class UserService {
             "password": password
         }) 
   }
+
+  getUserDetails(token: string) : Observable<User>{
+    return this.http.get<User>('http://localhost:8082/auth/login', {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
+    })
+  }
+ 
 }
