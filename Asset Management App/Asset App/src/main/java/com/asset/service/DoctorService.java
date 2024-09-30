@@ -1,5 +1,6 @@
 package com.asset.service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,9 +49,9 @@ public class DoctorService {
 		return doctorRepo.save(doctor);
 	}
 
-	public DoctorSchedule addDoctorSchedule(int doctorId, DoctorSchedule doctorSchedule) throws InvalidIdException {
+	public DoctorSchedule addDoctorSchedule(String username, DoctorSchedule doctorSchedule) throws InvalidIdException {
 		/* fetch doctor basis doctorId  */
-		Optional<Doctor> optional =  doctorRepo.findById(doctorId); 
+		Optional<Doctor> optional =  doctorRepo.getByUsername(username); 
 		if(optional.isEmpty())
 			throw new InvalidIdException("Doctor ID Invalid");
 		

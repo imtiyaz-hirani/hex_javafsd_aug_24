@@ -29,7 +29,7 @@ export class LoginComponent {
   onLogin(){
     
     this.userService.getToken( this.loginForm.value.username,  this.loginForm.value.password)
-    .subscribe({
+    .subscribe({  
             next: (data)=>{
             this.token = data.token; 
             this.userService.getUserDetails(this.token)

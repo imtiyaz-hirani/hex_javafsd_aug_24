@@ -6,6 +6,7 @@ import { PatientDashboardComponent } from './component/patient/dashboard/dashboa
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { DoctorListComponent } from './component/admin/doctor-list/doctor-list.component';
+import { ScheduleComponent } from './component/doctor/schedule/schedule.component';
  
 export const routes: Routes = [
     {
@@ -19,6 +20,9 @@ export const routes: Routes = [
     },
     {
         "path": "doctor/dashboard" , component: DoctorDashboardComponent
+    },
+    {
+        "path": "doctor/add-schedule" , component: ScheduleComponent
     },
     {
         "path": "patient/dashboard" , component: PatientDashboardComponent

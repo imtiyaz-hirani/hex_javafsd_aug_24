@@ -1,5 +1,6 @@
 package com.asset.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,10 @@ public class DoctorController {
 		return doctorService.addDcotor(doctor);
 	}
 	
-	@PostMapping("/doctor/schedule/add/{doctorId}")
-	public ResponseEntity<?> addDoctorSchedule(@PathVariable int doctorId, @RequestBody DoctorSchedule doctorSchedule) {
+	@PostMapping("/doctor/schedule/add")
+	public ResponseEntity<?> addDoctorSchedule(Principal principal, @RequestBody DoctorSchedule doctorSchedule) {
 		try {
-			DoctorSchedule ds=doctorService.addDoctorSchedule(doctorId,doctorSchedule);
+			DoctorSchedule ds=doctorService.addDoctorSchedule(principal.getName(),doctorSchedule);
 			return ResponseEntity.ok(ds);
 			
 		} catch (InvalidIdException e) {
