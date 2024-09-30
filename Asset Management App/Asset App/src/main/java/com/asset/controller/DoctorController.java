@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.asset.enums.Day;
 import com.asset.exception.InvalidIdException;
 import com.asset.model.Doctor;
 import com.asset.model.DoctorSchedule;
@@ -46,5 +47,10 @@ public class DoctorController {
 	@GetMapping("/doctor/all")
 	public List<Doctor> getAll(){
 		return doctorService.getAll();
+	}
+	
+	@GetMapping("/doctor/days")
+	public List<Day> getAllDays(){
+		return List.of(Day.values());
 	}
 }
