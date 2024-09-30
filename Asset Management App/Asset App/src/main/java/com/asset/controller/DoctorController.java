@@ -53,4 +53,9 @@ public class DoctorController {
 	public List<Day> getAllDays(){
 		return List.of(Day.values());
 	}
+	
+	@GetMapping("/doctor/schedule/all")
+	public List<DoctorSchedule> getAllSchedule(Principal principal) {
+		return doctorService.getAllSchedule(principal.getName());
+	}
 }

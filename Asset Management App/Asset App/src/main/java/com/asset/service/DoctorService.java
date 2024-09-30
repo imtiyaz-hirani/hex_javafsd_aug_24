@@ -67,4 +67,9 @@ public class DoctorService {
 		 
 		return doctorRepo.findAll();
 	}
+
+	public List<DoctorSchedule> getAllSchedule(String username) {
+		 
+		return doctorScheduleRepo.getByUsername(username);
+	}
 }

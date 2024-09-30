@@ -20,6 +20,9 @@ export const routes: Routes = [
         "path":"admin/doctor-list", component: DoctorListComponent
     },
     {
+        "path":"doctor/schedule", component: ScheduleComponent
+    },
+    {
         "path": "doctor/dashboard" , component: DoctorDashboardComponent
     },
     {

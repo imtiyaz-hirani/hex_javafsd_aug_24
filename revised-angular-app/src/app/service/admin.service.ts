@@ -28,4 +28,12 @@ export class AdminService {
       }
     )
   }
+
+  getDoctorSchedule():Observable<any>{
+    return this.http.get('http://localhost:8082/doctor/schedule/all', 
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+      }
+    )
+  }
 }
