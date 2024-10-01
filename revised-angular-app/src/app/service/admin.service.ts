@@ -29,8 +29,8 @@ export class AdminService {
     )
   }
 
-  getDoctorSchedule():Observable<any>{
-    return this.http.get('http://localhost:8082/doctor/schedule/all', 
+  getDoctorSchedule(page: number, size: number):Observable<any>{
+    return this.http.get('http://localhost:8082/doctor/schedule/all?page='+page + '&size='+size, 
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
       }

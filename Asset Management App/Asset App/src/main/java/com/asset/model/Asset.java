@@ -19,7 +19,7 @@ public class Asset {
 	@Enumerated(EnumType.STRING)
 	private AssetCategory assetCategory;
 	
-	private double assetValue; 
+	private double assetValue;  
 	
 	private int quantity;
 

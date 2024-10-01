@@ -16,4 +16,9 @@ public class AssetService {
 		 
 		return assetRepository.save(asset);
 	}
+
+	public Asset getById(int id) {
+		 
+		return assetRepository.findById(id).get();
+	}
 }

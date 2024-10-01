@@ -42,6 +42,22 @@
                    
                 </tbody>
               </table>
+
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    <button class="page-link"  [disabled]="first == true" (click)="onPrev()"> Prev</button>
+                  </li>
+                  <span *ngFor="let n of numArry">
+                    <button class="page-link"   (click)="onPageNumberClick(n)"> {{n+1}}</button>
+                  </span>
+                  
+                   
+                  <li class="page-item">
+                    <button class="page-link"  [disabled]="last == true" (click)="onNext()"> Next</button>
+                  </li>
+                </ul>
+              </nav>
         </div>
 
     </div>

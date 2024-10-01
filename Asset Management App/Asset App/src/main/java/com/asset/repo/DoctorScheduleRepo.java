@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,6 +17,6 @@ public interface DoctorScheduleRepo extends JpaRepository<DoctorSchedule, Intege
 	DoctorSchedule getNumberOfAppointmentCount(LocalDate dateOfAppointment, LocalTime fromTime, LocalTime toTime);
 
 	@Query("select ds from DoctorSchedule ds join ds.doctor d where d.user.username=?1")
-	List<DoctorSchedule> getByUsername(String username);
+	Page<DoctorSchedule> getByUsername(String username, Pageable pageable);
 
 }

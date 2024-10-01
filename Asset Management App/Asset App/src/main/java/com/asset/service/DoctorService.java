@@ -1,10 +1,11 @@
 package com.asset.service;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -68,8 +69,8 @@ public class DoctorService {
 		return doctorRepo.findAll();
 	}
 
-	public List<DoctorSchedule> getAllSchedule(String username) {
+	public Page<DoctorSchedule> getAllSchedule(String username, Pageable pageable) {
 		 
-		return doctorScheduleRepo.getByUsername(username);
+		return doctorScheduleRepo.getByUsername(username,pageable);
 	}
 }

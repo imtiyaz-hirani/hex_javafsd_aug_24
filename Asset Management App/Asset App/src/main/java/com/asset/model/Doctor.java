@@ -1,5 +1,7 @@
 package com.asset.model;
 
+import java.util.List;
+
 import com.asset.enums.DoctorSpecialization;
 
 import jakarta.persistence.Entity;
@@ -8,10 +10,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
-@Entity
+ @Entity
 public class Doctor {
 
 	@Id
@@ -22,10 +25,10 @@ public class Doctor {
 	
 	@Enumerated(EnumType.STRING)
 	private DoctorSpecialization doctorSpecialization;
-	
+	 
 	@OneToOne
 	private UserInfo user;
-
+    
 	public int getId() {
 		return id;
 	}
