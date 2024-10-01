@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/asset/get/{id}").permitAll()
                         .requestMatchers("/doctor/add").hasRole("ADMIN")
                         .requestMatchers("/doctor/all").hasAnyRole("ADMIN")
-                        .requestMatchers("/doctor/schedule/add").hasAnyRole("DOCTOR")
+                        .requestMatchers("/doctor/schedule/add").permitAll() //.hasAnyRole("DOCTOR")
                         .requestMatchers("/doctor/schedule/all").permitAll()  //.hasAnyRole("DOCTOR","PATIENT")
                         .requestMatchers("/doctor/days").permitAll()
                         .requestMatchers("/book-appointment/{patientId}/{doctorId}").permitAll()

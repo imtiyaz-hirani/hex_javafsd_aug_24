@@ -17,7 +17,7 @@ export class ScheduleComponent {
    numArry:number[]=[];
    counter: number=0;
    page:number =0;
-   size:number = 3; 
+   size:number = 5; 
    last: boolean=false; 
    first: boolean=true; 
 
@@ -66,6 +66,17 @@ export class ScheduleComponent {
    onPrev(){
     this.page = this.page - 1;
     this.fetchData();
+   }
+
+   filterByCurrentWeek(){
+
+   }
+
+   filterByToday(){
+      let todaysDate= new Date();
+      this.schedule = this.schedule
+            .filter(s=>new Date(s.date).toLocaleDateString() === 
+                       new Date().toLocaleDateString()); 
    }
 
 }
