@@ -17,7 +17,7 @@ export class ScheduleComponent {
    numArry:number[]=[];
    counter: number=0;
    page:number =0;
-   size:number = 5; 
+   size:number = 100; 
    last: boolean=false; 
    first: boolean=true; 
 
@@ -69,7 +69,15 @@ export class ScheduleComponent {
    }
 
    filterByCurrentWeek(){
-
+      let todaysDate= new Date();
+      let todaysDay = new Date().getDay(); 
+      let startDate = new Date(todaysDate.setDate(todaysDate.getDate() - (todaysDay-1)))
+      let todaysDate1 = new Date();
+      let endDate = new Date(todaysDate1.setDate(todaysDate1.getDate() + (6-todaysDay)))
+      let fromDate = startDate.toISOString().split('T')[0]; 
+      let toDate=endDate.toISOString().split('T')[0]; 
+      
+      this.schedule = this.schedule.filter(e=> e.date >= fromDate && e.date <= toDate )
    }
 
    filterByToday(){
@@ -79,4 +87,7 @@ export class ScheduleComponent {
                        new Date().toLocaleDateString()); 
    }
 
+   getAll(){
+      this.fetchData();
+   }
 }
