@@ -49,6 +49,7 @@ export class ScheduleComponent {
       },
       error: (err)=>{
         console.log(err.message)
+       
         this.router.navigateByUrl('**')
       }
     })

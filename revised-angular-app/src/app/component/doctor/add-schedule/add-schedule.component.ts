@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { DoctorNavbarComponent } from "../doctor-navbar/doctor-navbar.component";
 import { NgFor, NgIf } from '@angular/common';
 import { AdminService } from '../../../service/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-schedule',
@@ -23,7 +24,7 @@ export class AddScheduleComponent {
   successMsg:string=undefined
   errorMsg:string=undefined
 
-  constructor(private adminService: AdminService){
+  constructor(private adminService: AdminService, private router: Router){
     this.adminService.getDays().subscribe({
       next: (data)=> this.days = data
     })
@@ -44,7 +45,12 @@ export class AddScheduleComponent {
       error:(err)=>{
         this.successMsg = undefined;
         console.log(err)
-        this.errorMsg = err.message
+        if(err.status == 305){
+          this.errorMsg = err.error
+        }
+        else{
+          this.router.navigateByUrl("/**")
+        }
       }
     })
     }
