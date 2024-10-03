@@ -3,6 +3,8 @@ import { DoctorNavbarComponent } from "../doctor-navbar/doctor-navbar.component"
 import { AdminService } from '../../../service/admin.service';
 import { NgFor } from '@angular/common';
 import { count } from 'rxjs';
+import { routes } from '../../../app.routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schedule',
@@ -21,7 +23,7 @@ export class ScheduleComponent {
    last: boolean=false; 
    first: boolean=true; 
 
-   constructor(private adminService : AdminService){
+   constructor(private adminService : AdminService,private router: Router){
     this.fetchData();
     
     console.log(this.numArry)
@@ -47,6 +49,7 @@ export class ScheduleComponent {
       },
       error: (err)=>{
         console.log(err.message)
+        this.router.navigateByUrl('**')
       }
     })
    }

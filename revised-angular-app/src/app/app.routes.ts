@@ -8,28 +8,29 @@ import { LogoutComponent } from './auth/logout/logout.component';
 import { DoctorListComponent } from './component/admin/doctor-list/doctor-list.component';
 import { ScheduleComponent } from './component/doctor/schedule/schedule.component';
 import { AddScheduleComponent } from './component/doctor/add-schedule/add-schedule.component';
+import { AuthGuard } from './guard/auth.guard';
  
 export const routes: Routes = [
     {
-        "path" : "" , component: LoginComponent
+        "path" : "" , component: LoginComponent,
     },
     {
-        "path": "admin/dashboard" , component: AdminDashboardComponent
+        "path": "admin/dashboard" , component: AdminDashboardComponent, canActivate: [AuthGuard]
     },
     {
-        "path":"admin/doctor-list", component: DoctorListComponent
+        "path":"admin/doctor-list", component: DoctorListComponent, canActivate: [AuthGuard]
     },
     {
-        "path":"doctor/schedule", component: ScheduleComponent
+        "path":"doctor/schedule", component: ScheduleComponent, canActivate: [AuthGuard]
     },
     {
-        "path": "doctor/dashboard" , component: DoctorDashboardComponent
+        "path": "doctor/dashboard" , component: DoctorDashboardComponent, canActivate: [AuthGuard]
     },
     {
-        "path": "doctor/add-schedule" , component: AddScheduleComponent
+        "path": "doctor/add-schedule" , component: AddScheduleComponent, canActivate: [AuthGuard]
     },
     {
-        "path": "patient/dashboard" , component: PatientDashboardComponent
+        "path": "patient/dashboard" , component: PatientDashboardComponent, canActivate: [AuthGuard]
     },
     {
         "path": "logout" , component: LogoutComponent

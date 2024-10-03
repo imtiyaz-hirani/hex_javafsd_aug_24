@@ -30,4 +30,8 @@ export class UserService {
     })
   }
 
+  isUserAutheticated(): boolean{
+    let token = localStorage.getItem('token'); 
+    return !token?false: true; 
+  }
 }
