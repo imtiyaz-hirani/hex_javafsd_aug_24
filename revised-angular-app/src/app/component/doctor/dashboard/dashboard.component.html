@@ -12,6 +12,12 @@
         <div class="col-lg-8"  >
             
                  <div class="card" >
+                    <p class="text-center">
+                        <input type="radio" name="week" checked> Current Week
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="week"> Previous Week
+                        
+                    </p>
                         <p-chart type="bar"   [data]="aptData" [options]="barOptions"  />
                     </div>
         </div>

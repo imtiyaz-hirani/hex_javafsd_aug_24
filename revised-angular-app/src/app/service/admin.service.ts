@@ -36,4 +36,13 @@ export class AdminService {
       }
     )
   }
+
+  getApptStats(week:string) : Observable<any>{
+    return this.http.get('http://localhost:8082/doctor/appointment/stats/' + week ,
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+      }
+    )
+
+  }
 }

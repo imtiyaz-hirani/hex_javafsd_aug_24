@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import com.asset.enums.Day;
+import com.asset.exception.InvalidInputException;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -91,6 +92,12 @@ public class DoctorSchedule {
 
 	public void setNumberOfAppt(int numberOfAppt) {
 		this.numberOfAppt = numberOfAppt;
+	}
+
+	public void validate(DoctorSchedule doctorSchedule) throws InvalidInputException {
+		if(doctorSchedule.getDate()== null || doctorSchedule.getDate().toString().equals(""))
+			throw new InvalidInputException("Date cannot be blank"); 
+		
 	} 
 	
 	
