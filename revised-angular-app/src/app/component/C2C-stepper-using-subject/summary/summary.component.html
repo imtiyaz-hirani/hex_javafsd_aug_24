@@ -1,1 +1,35 @@
-<p>summary works!</p>
+ 
+    <div class="mt-2"> 
+        <label>Name: </label>
+        <input type="text" class="form-control" [(ngModel)]="name" >
+    </div>
+    <div class="mt-2">
+        <label>Email: </label>
+        <input type="text" class="form-control" [(ngModel)]="email">
+    </div>
+    <div class="mt-2"> 
+        <label>Contact: </label>
+        <input type="text" class="form-control" [(ngModel)]="contact">
+    </div>
+    <hr>
+    <div class="mt-2"> 
+        <label>illness: </label>
+        <input type="text" class="form-control" [(ngModel)]="illness">
+    </div>
+    <div class="mt-2">
+        <label>Duration: </label>
+        <input type="text" class="form-control" [(ngModel)]="duration">
+    </div>
+    <div class="mt-2"> 
+        <label>Details: </label>
+        <textarea rows="5" cols="10" class="form-control" [(ngModel)]="details"></textarea>
+    </div>
+    <hr>
+    <div class="mt-2"> 
+        <label>Select Room: </label>
+        <select [(ngModel)]="room" class="form-control">
+            <option value="delux">Delux - Single Occupancy</option>
+            <option value="twin">Twin Sharing - Double Occupancy</option>
+            <option value="general">General</option>
+        </select>
+    </div>

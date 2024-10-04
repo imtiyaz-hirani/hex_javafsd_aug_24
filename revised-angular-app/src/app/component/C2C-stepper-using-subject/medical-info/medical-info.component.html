@@ -1,1 +1,12 @@
-<p>medical-info works!</p>
+<div class="mt-2"> 
+    <label>Illness: </label>
+    <input type="text" class="form-control" [(ngModel)]="illness" (change)="onChange()">
+</div>
+<div class="mt-2">
+    <label>Duration(How long has the problem persisted): </label>
+    <input type="text" class="form-control" [(ngModel)]="duration" (change)="onChange()">
+</div>
+<div class="mt-2"> 
+    <label>Details: </label>
+    <input type="text" class="form-control" [(ngModel)]="details" (change)="onChange()">
+</div>

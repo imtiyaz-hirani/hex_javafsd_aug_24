@@ -1,1 +1,15 @@
-<p>personal-info works!</p>
+
+ 
+    <div class="mt-2"> 
+        <label>Name: </label>
+        <input type="text" class="form-control" [(ngModel)]="name" (change)="onChange()">
+    </div>
+    <div class="mt-2">
+        <label>Email: </label>
+        <input type="text" class="form-control" [(ngModel)]="email" (change)="onChange()">
+    </div>
+    <div class="mt-2"> 
+        <label>Contact: </label>
+        <input type="text" class="form-control" [(ngModel)]="contact" (change)="onChange()">
+    </div>
+     
