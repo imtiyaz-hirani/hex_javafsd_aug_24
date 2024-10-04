@@ -19,9 +19,8 @@ export class DoctorDashboardComponent implements OnInit{
   pieOptions: any;
   labels: string[] =[];
   data: string[] = [];
-  constructor( private adminService : AdminService){
-    
- }
+  constructor( private adminService : AdminService){}
+  
   ngOnInit(): void {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
@@ -32,8 +31,7 @@ export class DoctorDashboardComponent implements OnInit{
       next: (res)=>{
         this.labels = res.labels;
         this.data = res.data;
-        
-        
+
     this.aptData = {
       labels: this.labels,
       datasets: [

@@ -9,10 +9,17 @@ import { DoctorListComponent } from './component/admin/doctor-list/doctor-list.c
 import { ScheduleComponent } from './component/doctor/schedule/schedule.component';
 import { AddScheduleComponent } from './component/doctor/add-schedule/add-schedule.component';
 import { AuthGuard } from './guard/auth.guard';
+import { Page1Component } from './component/C2C-passing-param/page1/page1.component';
+import { Page2Component } from './component/C2C-passing-param/page2/page2.component';
  
 export const routes: Routes = [
     {
-        "path" : "" , component: LoginComponent,
+        "path" : "" , component: Page1Component,
+    },{
+        "path" : "info/:vehicle" , component: Page2Component,
+    },
+    {
+        "path" : "login" , component: LoginComponent,
     },
     {
         "path": "admin/dashboard" , component: AdminDashboardComponent, canActivate: [AuthGuard]
