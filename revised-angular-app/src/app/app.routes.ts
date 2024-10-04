@@ -11,11 +11,16 @@ import { AddScheduleComponent } from './component/doctor/add-schedule/add-schedu
 import { AuthGuard } from './guard/auth.guard';
 import { Page1Component } from './component/C2C-passing-param/page1/page1.component';
 import { Page2Component } from './component/C2C-passing-param/page2/page2.component';
+import { OnboardComponent } from './component/C2C-stepper-using-subject/onboard/onboard.component';
  
 export const routes: Routes = [
     {
-        "path" : "" , component: Page1Component,
-    },{
+        "path" : "" , component: OnboardComponent,
+    },
+    {
+        "path" : "page1" , component: Page1Component,
+    },
+    {
         "path" : "info/:vehicle" , component: Page2Component,
     },
     {
