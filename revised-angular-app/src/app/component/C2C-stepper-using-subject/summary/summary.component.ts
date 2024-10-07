@@ -41,5 +41,10 @@ export class SummaryComponent implements OnInit{
       })
   }
 
-
+  onBtnClick(){
+    console.log(this.name + '--', this.email, + '--' + this.contact );
+    console.log(this.illness + '--', this.duration, + '--' + this.details );
+    console.log(this.room);
+    
+  }
 }

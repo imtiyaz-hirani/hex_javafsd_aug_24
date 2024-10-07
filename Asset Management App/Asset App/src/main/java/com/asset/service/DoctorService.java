@@ -123,4 +123,8 @@ public class DoctorService {
 		appointmentStatDto.setData(listData);
 		return appointmentStatDto;
 	}
+
+	public DoctorSchedule getgetDoctorScheduleBtId(int id) {
+		return doctorScheduleRepo.findById(id).get();
+	}
 }

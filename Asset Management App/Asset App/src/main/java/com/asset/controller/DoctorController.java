@@ -89,4 +89,13 @@ public class DoctorController {
 			return ResponseEntity.status(305).body(e.getMessage()); 
 		}
 	}
+	
+	//api for doctor schedule by id
+	@GetMapping("/doctor/schedule/get/{id}")
+	public DoctorSchedule getDoctorSchedule(@PathVariable int id) {
+		return doctorService.getgetDoctorScheduleBtId(id);
+	}
+	
+	
+	
 }

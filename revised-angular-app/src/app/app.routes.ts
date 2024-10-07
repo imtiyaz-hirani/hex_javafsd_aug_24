@@ -12,6 +12,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { Page1Component } from './component/C2C-passing-param/page1/page1.component';
 import { Page2Component } from './component/C2C-passing-param/page2/page2.component';
 import { OnboardComponent } from './component/C2C-stepper-using-subject/onboard/onboard.component';
+import { EditScheduleComponent } from './component/doctor/edit-schedule/edit-schedule.component';
  
 export const routes: Routes = [
     {
@@ -34,6 +35,9 @@ export const routes: Routes = [
     },
     {
         "path":"doctor/schedule", component: ScheduleComponent, canActivate: [AuthGuard]
+    },
+    {
+        "path":"doctor/edit-schedule/:id", component: EditScheduleComponent, canActivate: [AuthGuard]
     },
     {
         "path": "doctor/dashboard" , component: DoctorDashboardComponent, canActivate: [AuthGuard]

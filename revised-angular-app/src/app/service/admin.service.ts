@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminService {
+  
 
   getAllDoctorApi: string = 'http://localhost:8082/doctor/all';
   
@@ -44,5 +45,9 @@ export class AdminService {
       }
     )
 
+  }
+
+  getScheduleDetailesById(id: any): Observable<any> {
+     return this.http.get('http://localhost:8082/doctor/schedule/get/' +id)
   }
 }

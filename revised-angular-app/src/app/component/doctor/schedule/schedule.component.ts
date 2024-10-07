@@ -94,4 +94,8 @@ export class ScheduleComponent {
    getAll(){
       this.fetchData();
    }
+
+   onEdit(id:any){
+       this.router.navigateByUrl('/doctor/edit-schedule/' + id)
+   }
 }
