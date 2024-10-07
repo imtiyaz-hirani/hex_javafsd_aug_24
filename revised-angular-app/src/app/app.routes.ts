@@ -13,10 +13,14 @@ import { Page1Component } from './component/C2C-passing-param/page1/page1.compon
 import { Page2Component } from './component/C2C-passing-param/page2/page2.component';
 import { OnboardComponent } from './component/C2C-stepper-using-subject/onboard/onboard.component';
 import { EditScheduleComponent } from './component/doctor/edit-schedule/edit-schedule.component';
+import { ProductFileUploadComponent } from './component/product-file-upload/product-file-upload.component';
  
 export const routes: Routes = [
     {
-        "path" : "" , component: OnboardComponent,
+        "path" : "" , component: ProductFileUploadComponent,
+    },
+    {
+        "path" : "stepper" , component: OnboardComponent,
     },
     {
         "path" : "page1" , component: Page1Component,

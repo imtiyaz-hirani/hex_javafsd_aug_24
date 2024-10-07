@@ -28,8 +28,6 @@ export class EditScheduleComponent implements OnInit{
     private actRoute: ActivatedRoute,
   private router: Router){
       //this.id= this.actRoute.snapshot.paramMap.get('id');  
-
-     
   }
   ngOnInit(): void {
     

@@ -8,7 +8,6 @@ import { Schedule } from '../model/schedule.model';
 })
 export class AdminService {
   
-
   getAllDoctorApi: string = 'http://localhost:8082/doctor/all';
   schedule$ = new BehaviorSubject<Schedule>({});
 

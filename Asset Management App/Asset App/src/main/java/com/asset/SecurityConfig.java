@@ -31,6 +31,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/signup").permitAll()
                         .requestMatchers("/asset/get/{id}").permitAll() 
+                        .requestMatchers("/product/add").permitAll()
+                        .requestMatchers("/product/image/upload/{pid}").permitAll()
                         .requestMatchers("/doctor/add").hasRole("ADMIN")
                         .requestMatchers("/doctor/all").hasAnyRole("ADMIN")
                         .requestMatchers("/doctor/schedule/add").permitAll() //.hasAnyRole("DOCTOR")
