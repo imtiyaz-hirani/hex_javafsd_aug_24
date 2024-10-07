@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Schedule } from '../model/schedule.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,11 @@ export class AdminService {
   
 
   getAllDoctorApi: string = 'http://localhost:8082/doctor/all';
-  
+  schedule$ = new BehaviorSubject<Schedule>({});
+
+  setScheduleSubject(obj: Schedule){
+      this.schedule$.next(obj)
+  }
   constructor(private http: HttpClient) { }
 
   getAllDoctors():Observable<any>{

@@ -27,13 +27,30 @@ export class EditScheduleComponent implements OnInit{
   constructor(private adminService: AdminService, 
     private actRoute: ActivatedRoute,
   private router: Router){
-      this.id= this.actRoute.snapshot.paramMap.get('id');  
+      //this.id= this.actRoute.snapshot.paramMap.get('id');  
+
+     
   }
   ngOnInit(): void {
+    
     this.adminService.getDays().subscribe({
       next: (data)=> this.days = data
     })
 
+    this.adminService.schedule$.subscribe({
+      next: (data)=>{
+         
+        this.id = data.id;
+          this.apptdate = data.date;
+          this.day = data.day;
+          this.from = data.fromTime;
+          this.to = data.toTime;
+          this.numOfAppt = data.numberOfAppt;
+ 
+      }
+    })
+    
+    /*
     this.adminService.getScheduleDetailesById(this.id).subscribe({
       next:(data)=>{
         this.apptdate = data.date;
@@ -44,7 +61,9 @@ export class EditScheduleComponent implements OnInit{
       },
       error: ()=>{}
     }); 
+    */
 
+    
   }
 
 
@@ -82,6 +101,8 @@ export class EditScheduleComponent implements OnInit{
   }
 
   onShowClick(){
-    this.router.navigateByUrl("/doctor/schedule")
+
+    this.router.navigateByUrl("/doctor/schedule");
+
   }
 }

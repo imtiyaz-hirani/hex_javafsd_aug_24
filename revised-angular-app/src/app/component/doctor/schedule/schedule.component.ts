@@ -5,6 +5,7 @@ import { NgFor } from '@angular/common';
 import { count } from 'rxjs';
 import { routes } from '../../../app.routes';
 import { Router } from '@angular/router';
+import { Schedule } from '../../../model/schedule.model';
 
 @Component({
   selector: 'app-schedule',
@@ -96,6 +97,12 @@ export class ScheduleComponent {
    }
 
    onEdit(id:any){
-       this.router.navigateByUrl('/doctor/edit-schedule/' + id)
+    /*Save the object that needs editing in subject  */
+    let schedule: Schedule={};
+    schedule = this.schedule.filter(s=>s.id == id)[0];
+     
+    this.adminService.setScheduleSubject(schedule); 
+
+    this.router.navigateByUrl('/doctor/edit-schedule/' + id)
    }
 }
